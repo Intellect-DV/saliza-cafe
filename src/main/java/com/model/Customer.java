@@ -32,36 +32,36 @@ public class Customer {
         return cust_id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getCust_name() {
-        return cust_name;
-    }
-
-    public String getCust_email() {
-        return cust_email;
-    }
-
     public void setCust_id(int cust_id) {
         this.cust_id = cust_id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public String getCust_name() {
+        return cust_name;
+    }
+
     public void setCust_name(String cust_name) {
         this.cust_name = cust_name;
+    }
+
+    public String getCust_email() {
+        return cust_email;
     }
 
     public void setCust_email(String cust_email) {

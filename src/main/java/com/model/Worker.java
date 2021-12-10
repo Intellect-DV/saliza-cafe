@@ -36,44 +36,44 @@ public class Worker {
         return worker_id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getWorker_name() {
-        return worker_name;
-    }
-
-    public String getWorker_email() {
-        return worker_email;
-    }
-
-    public Worker getManager() {
-        return manager;
-    }
-
     public void setWorker_id(int worker_id) {
         this.worker_id = worker_id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getWorker_name() {
+        return worker_name;
     }
 
     public void setWorker_name(String worker_name) {
         this.worker_name = worker_name;
     }
 
+    public String getWorker_email() {
+        return worker_email;
+    }
+
     public void setWorker_email(String worker_email) {
         this.worker_email = worker_email;
+    }
+
+    public Worker getManager() {
+        return manager;
     }
 
     public void setManager(Worker manager) {
