@@ -22,9 +22,10 @@ public class Customer {
     }
 
     public Customer(Customer cust) {
-        this.username = cust.getUsername();
-        this.cust_name = cust.getCust_name();
-        this.cust_email = cust.getCust_email();
+        this.username = cust.username;
+        this.cust_name = cust.cust_name;
+        this.password = cust.password;
+        this.cust_email = cust.cust_email;
     }
 
     public int getCust_id() {
