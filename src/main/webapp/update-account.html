@@ -32,7 +32,8 @@
             <!-- User Icon - (Change Profile, Logout) -->
             <div class="w3-dropdown-hover w3-right">
                 <button class="w3-button w3-deep-orange w3-hover-text-deep-orange w3-hover-white">
-                    <i class="fas fa-user"></i> Profile
+                    <i class="fas fa-user"></i>
+                    Profile
                 </button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4" style="right: 0%">
                     <a href="#" class="w3-bar-item w3-button">Update Profile</a>
@@ -41,25 +42,45 @@
             </div>
 
             <!-- Cart Button - Open cart -->
-            <a
-                href="#"
-                class="w3-bar-item w3-button w3-hover-text-deep-orange w3-hover-white w3-right"
-            >
-                <i class="fas fa-shopping-cart"></i> Cart
+            <a href="#" class="w3-bar-item w3-button w3-hover-text-deep-orange w3-hover-white w3-right">
+                <i class="fas fa-shopping-cart"></i>
+                Cart
             </a>
 
             <!-- Home Button - (Go to homepage) -->
-            <a
-                href="#"
-                class="w3-bar-item w3-button w3-hover-text-deep-orange w3-hover-white w3-right"
-            >
-                <i class="fas fa-home"></i> Home
+            <a href="#" class="w3-bar-item w3-button w3-hover-text-deep-orange w3-hover-white w3-right">
+                <i class="fas fa-home"></i>
+                Home
             </a>
         </nav>
 
         <!-- Main Content -->
         <main class="w3-container w3-card w3-display-middle w3-padding-large w3-padding-48">
-            <i class="fas fa-user" style="font-size: 100px"></i>
+            <!-- User Icon -->
+            <div class="w3-center">
+                <i class="fas fa-user" style="font-size: 100px"></i>
+            </div>
+
+            <h3 class="w3-center">Update Profile</h3>
+
+            <!-- Form -->
+            <form action="#" method="post" class="w3-center" style="font-size: 16px; max-width: 500px">
+                <input type="text" class="w3-margin-bottom" name="username" placeholder="Username" autocomplete="off" required />
+                <input type="text" class="w3-margin-bottom" name="phone" placeholder="Phone" autocomplete="off" required />
+                <input type="password" class="w3-margin-bottom" name="old_password" placeholder="Old Password" autocomplete="off" required />
+                <input type="password" class="w3-margin-bottom" name="new_password" placeholder="New Password" autocomplete="off" required />
+                <input type="text" class="w3-margin-bottom" name="email" placeholder="Email" autocomplete="off" required />
+
+                <!-- Submit button -->
+                <div class="w3-margin">
+                    <button type="submit" class="w3-button w3-green" style="min-width: 30%">Save Change</button>
+                </div>
+
+                <!-- Back to previous page -->
+                <div class="w3-margin">
+                    <a href="#" class="w3-button w3-red" style="min-width: 30%"> Cancel </a>
+                </div>
+            </form>
         </main>
     </body>
 </html>
