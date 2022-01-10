@@ -49,7 +49,14 @@ public class CustomerServlet extends HttpServlet {
             cust.setCustomer(username, password, name, email);
 
             // add new customer
-            CustomerDA.addCustomer(cust);
+            boolean succeed = CustomerDA.addCustomer(cust);
+
+            if(succeed) {
+                // todo - message , etc
+                return;
+            }
+        } else {
+            // todo - (use another username)
         }
     }
 
