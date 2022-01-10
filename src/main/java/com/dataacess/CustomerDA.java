@@ -13,13 +13,9 @@ public abstract class CustomerDA {
 
         try {
             String sql = "SELECT id FROM customer WHERE username=?";
-
             ResultSet rs = QueryHelper.getResultSet(sql, new String[]{username});
 
-            if(rs.next()) cust.setValid(true);
-            else cust.setValid(false);
-
-            rs.close();
+            cust.setValid(rs.next()); rs.close();
         } catch (SQLException err) {
             System.out.println(err.getMessage());
             cust.setValid(false);
@@ -44,10 +40,7 @@ public abstract class CustomerDA {
             };
 
             int rowAffected = QueryHelper.insertQuery(sql,obj) ;
-
-            if(rowAffected == 1) {
-                succeed = true;
-            }
+            if(rowAffected == 1) succeed = true;
         } catch (Exception err) {
             System.out.println(err.getMessage());
         }
