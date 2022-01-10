@@ -39,7 +39,7 @@ public class CustomerServlet extends HttpServlet {
 
         Customer cust = CustomerDA.isUsernameExisted(username);
 
-        if(cust.isValid()) {
+        if(!cust.isValid()) {
             // set data
             String password, name, email;
             password = request.getParameter("password");

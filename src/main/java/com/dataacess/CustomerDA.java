@@ -18,7 +18,6 @@ public abstract class CustomerDA {
             cust.setValid(rs.next()); rs.close();
         } catch (SQLException err) {
             System.out.println(err.getMessage());
-            cust.setValid(false);
         } finally {
             Postgres.closeConnection();
         }
