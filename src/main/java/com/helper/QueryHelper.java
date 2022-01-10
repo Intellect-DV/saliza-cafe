@@ -10,7 +10,11 @@ import java.sql.SQLException;
 public abstract class QueryHelper {
 
     // SELECT STATEMENT - return ResultSet from executed query
-    //** QueryHelper.getResultSet(...);
+    /**
+     *
+     * @param sql Accept full query without prepared statement
+     * @return ResultSet after execute the query
+     */
     public static ResultSet getResultSet(String sql) {
         ResultSet rs = null;
         Statement stmt;
@@ -25,7 +29,13 @@ public abstract class QueryHelper {
         }
         return rs;
     }
-    // ** QueryHelper.getResultSet(... , new Object[] { ... } );
+
+    /**
+     *
+     * @param sql Accept query with prepared statement; Example: SELECT * FROM username WHERE username=?
+     * @param data Accept array of object (could be multiple primitive data type); Example: new Object[] {"string",234}
+     * @return ResultSet after execute the query
+     */
     public static ResultSet getResultSet(String sql, Object [] data) {
         ResultSet rs = null;
         PreparedStatement prepStmt;
@@ -43,6 +53,12 @@ public abstract class QueryHelper {
         return rs;
     }
 
+    /**
+     *
+     * @param sql Accept INSERT query with prepared statement; Example: INSERT INTO (...) VALUES (?,?,?)
+     * @param data Array of Object; Example: new Object[]{"string",234}
+     * @return Either -1 for failed, 0 for not updating, > 0 updating 1 or more rows in table
+     */
     // INSERT STATEMENT - return row updated (-1 for failed) (0 for not updating row)
     public static int insertQuery(String sql, Object [] data) {
         PreparedStatement prepStmt = null;
@@ -61,6 +77,15 @@ public abstract class QueryHelper {
         return updatedRow;
     }
 
+    /**
+     *
+     * @param sql Accept string; Only use ? in WHERE statement
+     *            Example: SELECT * FROM Customer WHERE username=? and password=?
+     * @param data Accept array object
+     *             Put the parameter here
+     *             Example: new Object[] { "String", 99, true }
+     * @return PreparedStatement - use for ResultSet
+     */
     private static PreparedStatement getPrepStmt(String sql, Object [] data) {
         PreparedStatement prepStmt = null;
 
