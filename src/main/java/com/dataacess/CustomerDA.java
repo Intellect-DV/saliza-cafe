@@ -31,15 +31,27 @@ public abstract class CustomerDA {
     }
 
     // add new customer
-    public static void addCustomer(Customer cust) {
-            try {
-                String sql = "INSERT INTO customer(username, password, name, email) VALUES (?,?,?,?)";
-                PreparedStatement prepStmt = Postgres.getConnection().prepareStatement(sql);
+    public static boolean addCustomer(Customer cust) {
+        boolean succeed = false;
+        try {
+            String sql = "INSERT INTO customer(username, password, name, email) VALUES (?,?,?,?)";
 
+            Object[] obj = new Object[] {
+              cust.getCustomerUsername(),
+              cust.getCustomerPassword(),
+              cust.getCustomerName(),
+              cust.getCustomerEmail()
+            };
 
+            int rowAffected = QueryHelper.insertQuery(sql,obj) ;
 
-            } catch (SQLException err) {
-                System.out.println(err.getMessage());
+            if(rowAffected == 1) {
+                succeed = true;
             }
+        } catch (Exception err) {
+            System.out.println(err.getMessage());
+        }
+
+        return succeed;
     }
 }
