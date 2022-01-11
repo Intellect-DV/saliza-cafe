@@ -16,7 +16,7 @@ public abstract class CustomerDA {
 
             cust.setValid(rs.next()); rs.close();
         } catch (SQLException err) {
-            System.out.println(err.getMessage());
+            err.printStackTrace();
         }
 
         return cust;
@@ -38,7 +38,7 @@ public abstract class CustomerDA {
             int rowAffected = QueryHelper.insertQuery(sql,obj) ;
             if(rowAffected == 1) succeed = true;
         } catch (Exception err) {
-            System.out.println(err.getMessage());
+            err.printStackTrace();
         }
 
         return succeed;
