@@ -14,8 +14,11 @@ public abstract class Postgres {
         try {
             Class.forName("org.postgresql.Driver"); // use postgres driver
 
-            // get value from system environment
-            URI dbURI = new URI(System.getenv("DATABASE_URL"));
+            URI dbURI = null;
+            if(System.getenv("DATABASE_URL") != null)
+                dbURI = new URI(System.getenv("DATABASE_URL")); // get value from system environment
+            else
+                dbURI = new URI("postgres://postgres:system@localhost:5432/salizacafe");
 
             String username, password, dbURL;
 
@@ -32,8 +35,12 @@ public abstract class Postgres {
     // return connection
     public static Connection getConnection() {
         // check if conn is null
-        if(conn == null) {
-            init(); // initialize the database
+        try {
+            if(conn == null || conn.isClosed()) {
+                init(); // initialize the database
+            }
+        } catch (SQLException err) {
+            err.printStackTrace();
         }
         return conn;
     }
