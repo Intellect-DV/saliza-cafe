@@ -24,7 +24,7 @@ public abstract class QueryHelper {
             rs = stmt.executeQuery(sql);
             stmt.close(); rs.close();
         } catch(SQLException err) {
-            System.out.println(err.getMessage());
+            err.printStackTrace();
         } finally {
             Postgres.closeConnection();
         }
@@ -47,7 +47,7 @@ public abstract class QueryHelper {
             rs = prepStmt.executeQuery();
             prepStmt.close(); rs.close(); // close
         } catch (SQLException err) {
-            System.out.println(err.getMessage());
+            err.printStackTrace();
         } finally {
             Postgres.closeConnection(); // close connection
         }
@@ -71,7 +71,7 @@ public abstract class QueryHelper {
             updatedRow = prepStmt.executeUpdate();
             prepStmt.close();
         } catch (SQLException err) {
-            System.out.println(err.getMessage());
+            err.printStackTrace();
         } finally {
             Postgres.closeConnection();
         }
@@ -107,9 +107,7 @@ public abstract class QueryHelper {
                 }
             }
         } catch (SQLException err) {
-            System.out.println(err.getMessage());
-        } finally {
-            Postgres.closeConnection();
+            err.printStackTrace();
         }
 
         return prepStmt;
