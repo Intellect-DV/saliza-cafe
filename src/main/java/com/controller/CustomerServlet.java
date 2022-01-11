@@ -53,10 +53,11 @@ public class CustomerServlet extends HttpServlet {
 
             if(succeed) {
                 // todo - message , etc
-                return;
+                System.out.println("New User added");
             }
         } else {
             // todo - (use another username)
+            System.out.println("Cannot add user: username duplicated");
         }
     }
 
