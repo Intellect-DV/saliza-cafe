@@ -19,6 +19,8 @@ public class CustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
+        if (action == null) return;
+
         switch(action.toLowerCase()){
             case("signup"):
                 signUp(request,response);
@@ -34,18 +36,21 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void signUp(HttpServletRequest request, HttpServletResponse response){
-        // perform sign up
-        String username = request.getParameter("username");
+        // set data
+        String username, password, name, email;
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+        name = request.getParameter("name");
+        email = request.getParameter("email");
+
+        if(username == null || password == null || name == null || email == null){
+            System.out.println("Input empty");
+            return;
+        }
 
         Customer cust = CustomerDA.isUsernameExisted(username);
 
         if(!cust.isValid()) {
-            // set data
-            String password, name, email;
-            password = request.getParameter("password");
-            name = request.getParameter("name");
-            email = request.getParameter("email");
-
             cust.setCustomer(username, password, name, email);
 
             // add new customer
@@ -62,6 +67,6 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response) {
-        // perform login
+
     }
 }
