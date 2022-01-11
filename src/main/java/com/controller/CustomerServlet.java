@@ -67,6 +67,23 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response) {
+        String username, password;
+        username = request.getParameter("username");
+        password = request.getParameter("password");
 
+        if(username == null || password == null) {
+            System.out.println("Input empty");
+            return;
+        }
+
+        Customer cust = CustomerDA.getCustomer(username, password);
+
+        if(cust.isValid()) {
+            // todo - make session
+            System.out.println("Make a session");
+        } else {
+            // todo - wrong username / password
+            System.out.println("Wrong username or password");
+        }
     }
 }
