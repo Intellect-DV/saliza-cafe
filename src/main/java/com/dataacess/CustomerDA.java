@@ -1,7 +1,6 @@
 package com.dataacess;
 
 import java.sql.*;
-import com.connection.Postgres;
 import com.helper.QueryHelper;
 import com.model.Customer;
 
@@ -18,8 +17,6 @@ public abstract class CustomerDA {
             cust.setValid(rs.next()); rs.close();
         } catch (SQLException err) {
             System.out.println(err.getMessage());
-        } finally {
-            Postgres.closeConnection();
         }
 
         return cust;
