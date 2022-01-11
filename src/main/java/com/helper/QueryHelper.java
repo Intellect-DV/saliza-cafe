@@ -22,7 +22,7 @@ public abstract class QueryHelper {
         try {
             stmt = Postgres.getConnection().createStatement();
             rs = stmt.executeQuery(sql);
-            stmt.close(); rs.close();
+
         } catch(SQLException err) {
             err.printStackTrace();
         } finally {
@@ -39,13 +39,9 @@ public abstract class QueryHelper {
      */
     public static ResultSet getResultSet(String sql, Object [] data) {
         ResultSet rs = null;
-        PreparedStatement prepStmt;
 
         try {
-            prepStmt = getPrepStmt(sql, data);
-
-            rs = prepStmt.executeQuery();
-            prepStmt.close(); rs.close(); // close
+            rs = getPrepStmt(sql, data).executeQuery();
         } catch (SQLException err) {
             err.printStackTrace();
         } finally {
