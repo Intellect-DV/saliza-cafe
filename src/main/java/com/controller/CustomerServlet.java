@@ -82,6 +82,7 @@ public class CustomerServlet extends HttpServlet {
             // make session
             HttpSession session = request.getSession();
             session.setAttribute("customer", cust);
+            session.setMaxInactiveInterval(60*20); // 20 min timeout after inactivity
 
             // todo - redirect page
         } else {
