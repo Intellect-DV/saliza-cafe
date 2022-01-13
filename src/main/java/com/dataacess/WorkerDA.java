@@ -2,6 +2,8 @@ package com.dataacess;
 
 import com.helper.QueryHelper;
 import com.model.Worker;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public abstract class WorkerDA {
 
@@ -28,8 +30,30 @@ public abstract class WorkerDA {
         return succeed;
     }
 
-    public static void retrieveWorker() {
+    public static Worker retrieveWorker(String username, String password) {
+        Worker worker = new Worker();
 
+        try {
+            String sql = "SELECT id, name, email FROM worker WHERE username=? AND password=?";
+
+            ResultSet rs = QueryHelper.getResultSet(sql, new String[] {username, password});
+
+            if(rs.next()) {
+                String name, email;
+                int id = rs.getInt("id");
+                name = rs.getString("name");
+                email = rs.getString("email");
+
+                worker.setWorker(id,username,name,email); worker.setValid(true);
+            } else {
+                worker.setValid(false);
+            }
+            rs.close();
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+
+        return worker;
     }
 
     public static void updateWorker() {
