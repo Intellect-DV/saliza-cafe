@@ -66,6 +66,14 @@ public class WorkerServlet extends HttpServlet {
         }
 
         // get manager session
+        HttpSession session = request.getSession(false);
+
+        if(session == null) {
+            System.out.println("Login first before add worker");
+            json.put("error", "Authorization failed!");
+            jsonResponse(response, 401, json);
+            return;
+        }
 
         // check existed username
 
