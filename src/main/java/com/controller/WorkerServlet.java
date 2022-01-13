@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dataacess.WorkerDA;
 import com.model.Worker;
 import org.json.JSONObject;
 
@@ -59,7 +60,7 @@ public class WorkerServlet extends HttpServlet {
         if((username == null || password == null || name == null || email == null)
                 || (username.equals("") || password.equals("") || name.equals("") || email.equals("")) ) {
             System.out.println("Input empty");
-            json.put("message", "Input empty");
+            json.put("error", "Input empty");
             jsonResponse(response, 400, json);
             return;
         }
@@ -83,8 +84,37 @@ public class WorkerServlet extends HttpServlet {
 
     private static void loginWorker(HttpServletRequest request, HttpServletResponse response) {
         JSONObject json = new JSONObject();
-        System.out.println("loginWorker");
-        json.put("message", "loginWorker");
-        jsonResponse(response, 200, json);
+        String username, password;
+
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+
+        if(username == null || password == null || username.equals("") || password.equals("")) {
+            System.out.println("Input empty");
+            json.put("error", "Input empty");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        Worker worker = WorkerDA.retrieveWorker(username, password);
+        boolean succeed = false;
+
+        if(worker.isValid()) {
+            // make session
+            HttpSession session = request.getSession();
+            session.setAttribute("workerObj", worker);
+            session.setMaxInactiveInterval(60*20); // 20 min timeout after inactivity
+
+            System.out.println("Session created");
+            json.put("message", "Login success!");
+            succeed = true;
+            // todo - redirect page
+        } else {
+            // todo - wrong username / password
+            System.out.println("Wrong username or password");
+            json.put("error", "Wrong username  or password!");
+        }
+
+        jsonResponse(response, succeed ? 200 : 400, json);
     }
 }
