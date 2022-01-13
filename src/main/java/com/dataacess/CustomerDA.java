@@ -23,7 +23,7 @@ public abstract class CustomerDA {
     }
 
     // add new customer
-    public static boolean addCustomer(Customer cust) {
+    public static boolean createCustomer(Customer cust) {
         boolean succeed = false;
         try {
             String sql = "INSERT INTO customer(username, password, name, email) VALUES (?,?,?,?)";
@@ -45,7 +45,7 @@ public abstract class CustomerDA {
     }
 
     // get customer
-    public static Customer getCustomer(String username, String password) {
+    public static Customer retrieveCustomer(String username, String password) {
         Customer cust = new Customer();
 
         try {
