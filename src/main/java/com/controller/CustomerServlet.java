@@ -28,7 +28,9 @@ public class CustomerServlet extends HttpServlet {
             case("login"):
                 login(request, response);
                 break;
-
+            case("update"):
+                updateProfile(request, response);
+                break;
             default:
                 // other
                 break;
@@ -81,13 +83,38 @@ public class CustomerServlet extends HttpServlet {
         if(cust.isValid()) {
             // make session
             HttpSession session = request.getSession();
-            session.setAttribute("customer", cust);
+            session.setAttribute("customerObj", cust);
             session.setMaxInactiveInterval(60*20); // 20 min timeout after inactivity
 
+            System.out.println("Session created");
             // todo - redirect page
         } else {
             // todo - wrong username / password
             System.out.println("Wrong username or password");
         }
+    }
+
+    private void updateProfile(HttpServletRequest request, HttpServletResponse response) {
+        String username, email, password;
+
+        username = request.getParameter("username");
+        email = request.getParameter("email");
+        password = request.getParameter("password");
+
+        if(username == null || email == null || password == null) {
+            System.out.println("Input is empty");
+            return;
+        }
+
+        // get from session - if none do not create session
+        HttpSession session = request.getSession(false);
+
+        if(session == null) {
+            System.out.println("Invalid login session: need to login to store session");
+            return;
+        }
+        Customer cust = (Customer) session.getAttribute("customerObj");
+
+        System.out.println("email" + cust.getCustomerEmail());
     }
 }
