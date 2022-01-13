@@ -7,6 +7,7 @@ public class Worker {
     private String workerName;
     private String workerEmail;
     private String managerId;
+    private boolean valid;
 
     public Worker() {
         this.workerUsername = null;
@@ -76,4 +77,8 @@ public class Worker {
     public void setManagerId(String managerId) {
         this.managerId = managerId;
     }
+
+    public boolean isValid() { return valid; }
+
+    public void setValid(boolean valid) { this.valid = valid; }
 }
