@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.model.Worker;
 import org.json.JSONObject;
 
 import javax.servlet.*;
@@ -48,6 +49,27 @@ public class WorkerServlet extends HttpServlet {
     private static void addWorker(HttpServletRequest request, HttpServletResponse response) {
         JSONObject json = new JSONObject();
         System.out.println("addWorker");
+        String username, password, name ,email; int managerId;
+
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+        name = request.getParameter("name");
+        email = request.getParameter("email");
+
+        if((username == null || password == null || name == null || email == null)
+                || (username.equals("") || password.equals("") || name.equals("") || email.equals("")) ) {
+            System.out.println("Input empty");
+            json.put("message", "Input empty");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        // get manager session
+
+        // check existed username
+
+        // add worker into database
+
         json.put("message", "addWorker");
         jsonResponse(response, 200, json);
     }
