@@ -144,7 +144,7 @@ public class CustomerServlet extends HttpServlet {
 
         if(session == null) {
             System.out.println("Invalid login session: need to login to store session");
-            json.put("error", "Input empty");
+            json.put("error", "Authorization failed!");
             jsonResponse(response, 401, json);
             return;
         }
