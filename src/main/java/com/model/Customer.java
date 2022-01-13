@@ -6,6 +6,7 @@ public class Customer {
    private String customerPassword;
    private String customerName;
    private String customerEmail;
+   private boolean valid; // to check if customer is valid (exist or not)
 
    public Customer() {
        this.customerUsername = null;
@@ -27,6 +28,13 @@ public class Customer {
         this.customerPassword = customer.customerPassword;
         this.customerName = customer.customerName;
         this.customerEmail = customer.customerEmail;
+    }
+
+    public void setCustomer(String customerUsername, String customerPassword, String customerName, String customerEmail) {
+        this.customerUsername = customerUsername;
+        this.customerPassword = customerPassword;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
     }
 
     public int getCustomerId() {
@@ -68,4 +76,8 @@ public class Customer {
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
     }
+
+    public boolean isValid() { return valid; }
+
+    public void setValid(boolean valid) { this.valid = valid; }
 }
