@@ -34,6 +34,13 @@ public class Worker {
         this.managerId = worker.managerId;
     }
 
+    public void setWorker(int workerId, String workerUsername, String workerName, String workerEmail) {
+        this.workerId = workerId;
+        this.workerUsername = workerUsername;
+        this.workerName = workerName;
+        this.workerEmail = workerEmail;
+    }
+
     public int getWorkerId() {
         return workerId;
     }
