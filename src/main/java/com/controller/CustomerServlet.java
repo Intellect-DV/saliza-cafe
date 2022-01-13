@@ -115,6 +115,12 @@ public class CustomerServlet extends HttpServlet {
         }
         Customer cust = (Customer) session.getAttribute("customerObj");
 
-        System.out.println("email" + cust.getCustomerEmail());
+        // check username is existed
+        if(!cust.getCustomerUsername().equals(username) && CustomerDA.isUsernameExisted(username).isValid()) {
+            System.out.println("invalid: username already taken");
+            return;
+        }
+
+        System.out.println("passed");
     }
 }
