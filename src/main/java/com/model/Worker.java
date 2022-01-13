@@ -5,19 +5,22 @@ public class Worker {
     private String workerUsername;
     private String workerPassword;
     private String workerName;
+    private String workerEmail;
     private String managerId;
 
     public Worker() {
         this.workerUsername = null;
         this.workerPassword = null;
         this.workerName = null;
+        this.workerEmail = null;
         this.managerId = null;
     }
 
-    public Worker(String workerUsername, String workerPassword, String workerName, String managerId) {
+    public Worker(String workerUsername, String workerPassword, String workerName, String workerEmail, String managerId) {
         this.workerUsername = workerUsername;
         this.workerPassword = workerPassword;
         this.workerName = workerName;
+        this.workerEmail = workerEmail;
         this.managerId = managerId;
     }
 
@@ -26,6 +29,7 @@ public class Worker {
         this.workerUsername = worker.workerUsername;
         this.workerPassword = worker.workerPassword;
         this.workerName = worker.workerName;
+        this.workerEmail = worker.workerEmail;
         this.managerId = worker.managerId;
     }
 
@@ -60,6 +64,10 @@ public class Worker {
     public void setWorkerName(String workerName) {
         this.workerName = workerName;
     }
+
+    public String getWorkerEmail() { return workerEmail; }
+
+    public void setWorkerEmail(String workerEmail) { this.workerEmail = workerEmail; }
 
     public String getManagerId() {
         return managerId;
