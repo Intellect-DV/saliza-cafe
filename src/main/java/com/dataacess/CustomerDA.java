@@ -35,8 +35,56 @@ public abstract class CustomerDA {
               cust.getCustomerEmail()
             };
 
-            int rowAffected = QueryHelper.insertQuery(sql,obj) ;
+            int rowAffected = QueryHelper.insertUpdateQuery(sql,obj) ;
             if(rowAffected == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
+    }
+
+    // get customer
+    public static Customer getCustomer(String username, String password) {
+        Customer cust = new Customer();
+
+        try {
+            String sql = "SELECT id, name, email FROM customer WHERE username=? AND password=?";
+
+            ResultSet rs = QueryHelper.getResultSet(sql, new String[] {username, password});
+
+            if(rs.next()) {
+                String name, email;
+                int id = rs.getInt("id");
+                name = rs.getString("name");
+                email = rs.getString("email");
+
+                cust.setCustomer(id,username,name,email); cust.setValid(true);
+            } else {
+                cust.setValid(false);
+            }
+            rs.close();
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+
+        return cust;
+    }
+
+    // update username, name, email
+    public static boolean updateCustomerProfile(Customer updateCust, int id) {
+        boolean succeed = false;
+        try {
+            String sql = "UPDATE customer set username=?, name=?, email=? WHERE id=?";
+
+            int affectedRow  = QueryHelper.insertUpdateQuery(sql,new Object[]{
+                    updateCust.getCustomerUsername(),
+                    updateCust.getCustomerName(),
+                    updateCust.getCustomerEmail(),
+                    id
+            });
+
+            if(affectedRow == 1) succeed = true;
         } catch (Exception err) {
             err.printStackTrace();
         }
