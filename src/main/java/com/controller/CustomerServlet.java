@@ -79,8 +79,11 @@ public class CustomerServlet extends HttpServlet {
         Customer cust = CustomerDA.getCustomer(username, password);
 
         if(cust.isValid()) {
-            // todo - make session
-            System.out.println("Make a session");
+            // make session
+            HttpSession session = request.getSession();
+            session.setAttribute("customer", cust);
+
+            // todo - redirect page
         } else {
             // todo - wrong username / password
             System.out.println("Wrong username or password");
