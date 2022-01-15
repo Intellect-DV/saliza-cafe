@@ -1,19 +1,14 @@
-
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Quicksand',sans-serif;
+    font-family: '../img/Quicksand',sans-serif;
 
 }
 
 body{
     width: 100%;
     height: 100vh;
-    border: 1px solid black;
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
 
 }
 
@@ -40,51 +35,48 @@ body{
     filter: blur(10px);
 }
 
-.box
-{
-    width: 350px;
-    height: 500px;
-    background: white;
-    position : relative;
-    overflow: hidden;
+.signin-box{
+    max-width: 850px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 19px 5px rgba(0,0,0,0.19);
+
 }
-.loginStaff
-{
+
+.left{
+    height: 100%;
+    background: url("../img/background.jpg");
+    background-size: cover;
+}
+
+.right{
+    padding: 25px 40px;
+}
+
+.h2{
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+}
+
+.h2:after{
+    content: '';
     position: absolute;
+    left: 50%;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 400px;
-    padding: 0px 20px;
-    transition: 0.5s;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 50px;
+    border-radius: 2px;
+    background-color: #2ecc71;
 }
 
-.loginCustomer
-{
-    position: absolute;
-    bottom: 0;
-    left: 101%;
-    width: 100%;
-    height: 400px;
-    padding: 0px 20px;
-    transition: 0.5s;
-
-
-}
-
-.input-group
-{
-    margin-top: 10px;
-}
-
-.input-group span
-{
-    color: gray;
-}
-
-.input-group .inp
-{
-
+.inp{
     width: 100%;
     padding: 0.4rem 1rem;
     outline: none;
@@ -95,18 +87,17 @@ body{
     transition: .3s;
 }
 
-.input-group:hover{
+.inp:hover{
     background-color: rgba(0,0,0,0);
 }
 
-.input-group:focus{
+.inp:focus{
     background-color: #fff;
     border: 2px solid rgba(30,85,250,0.47);
 
 }
-.submit-inp
-{
 
+.submit-inp{
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
@@ -123,6 +114,11 @@ body{
     background-color: #27ae60;
 }
 
+.toggle-parent {
+    position: relative;
+    height: 85px;
+}
+
 .toggle-btn
 {
     -webkit-appearance: none;
@@ -130,14 +126,15 @@ body{
     height: 40px;
     border: 1px solid gray;
     position: absolute;
-    top: 30px;
+    top: 50%;
+    transform: translateY(-50%);
     left: calc(50% - 75px);
     border-radius: 100px;
 }
 
 .toggle-btn:before
 {
-    content: 'Staff';
+    content: 'Customer';
     font-weight: bolder;
     color: white;
     position: absolute;
@@ -154,23 +151,30 @@ body{
 
 .toggle-btn:checked:before
 {
-    content: 'Customer';
+    content: 'Staff';
     left: 50%;
 }
 
-.toggle-btn:checked + .signup
-{
-    left: -101%;
+.loginCustomer {
+    display: block;
+    position: relative;
 }
 
-.toggle-btn:checked + .signup + .login
-{
-    left: 0%;
+.loginStaff {
+    display: none;
 }
 
-.h2{
-
-    font-size: 20px;
-
+.register-link {
+    position: absolute;
+    top: 100px;
+    font-size: 12px;
 }
 
+@media screen and  (max-width: 880px){
+    .signin-box{
+        grid-template-columns: 1fr;
+    }
+    .left{
+        height: 200px;
+    }
+}
