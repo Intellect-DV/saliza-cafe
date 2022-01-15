@@ -26,15 +26,15 @@
             <br>
             <form action="" method="">
 
-                <input type="text" placeholder="username" name="" class="inp">
+                <input type="text" placeholder="username" name="username" class="inp" required>
 
-                <input type="text" placeholder="phone number" name="" class="inp">
+                <input type="text" placeholder="name" name="name" class="inp" required>
 
-                <input type="text" placeholder="email address" name="" class="inp">
+                <input type="email" placeholder="email address" name="email" class="inp" required>
 
-                <input type="password" placeholder="password" name="" class="inp">
+                <input type="password" placeholder="password" name="password" class="inp" required>
 
-                <input type="password" placeholder="confirm password" name="" class="inp">
+                <input type="password" placeholder="confirm password" name="confirm-password" class="inp" required>
 
                 <input type="submit" value="Register" class="inp submit-inp">
 
