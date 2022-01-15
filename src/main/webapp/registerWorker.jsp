@@ -12,7 +12,7 @@
 <head>
     <title>UPDATE ACCOUNT</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-    <%@ include file="updateAccountUser.html"%>
+    <link rel="stylesheet" href="css/update-account.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 
 </head>
@@ -28,18 +28,21 @@
             <br>
             <form action="" method="">
 
-                <input type="text" placeholder="username" name="" class="inp">
+                <input type="text" placeholder="username" name="" class="inp" required>
 
-                <input type="text" placeholder="phone number" name="" class="inp">
+                <input type="text" placeholder="name" name="" class="inp" required>
 
-                <input type="text" placeholder="email address" name="" class="inp">
+                <input type="email" placeholder="email address" name="" class="inp" required>
 
-                <input type="password" placeholder="password" name="" class="inp">
+                <input type="password" placeholder="password" name="" class="inp" required>
 
-                <input type="password" placeholder="confirm password" name="" class="inp">
+                <input type="password" placeholder="confirm password" name="" class="inp" required>
 
                 <input type="submit" value="Register New Worker" class="inp submit-inp">
-                <input type="submit" value="Back" class="inp submit-inp">
+
+                <a href="index.jsp">
+                    <input type="submit" value="Back" class="inp submit-inp">
+                </a>
             </form>
         </div>
     </div>

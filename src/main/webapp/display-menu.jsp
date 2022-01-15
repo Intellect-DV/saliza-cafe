@@ -120,7 +120,7 @@
 <body>
 <!-- MAIN (Center website) -->
 <div class="container">
-    <img src="slideshow1.jpg" alt="Snow" style="width:100%; height:400px;">
+    <img src="img/slideshow1.jpg" alt="Snow" style="width:100%; height:400px;">
     <h1>Cafe SalizaEja Enterprise</h1>
 </div>
 
@@ -145,7 +145,7 @@
     <div class="row">
         <div class="column Food">
             <div class="content">
-                <img src="nasi-lemak-featured-1024x576.jpg" alt="Mountains">
+                <img src="img/nasi-lemak-featured-1024x576.jpg" alt="Mountains">
                 <h4>Nasi Lemak Ayam</h4>
                 <p>RM 6.00</p>
                 <br>
@@ -155,7 +155,7 @@
 
         <div class="column Food">
             <div class="content">
-                <img src="mee_goreng.jpg" alt="Lights" >
+                <img src="img/mee_goreng.jpg" alt="Lights" >
                 <h4>Mee Goreng</h4>
                 <p>RM 5.00</p>
                 <br>
@@ -165,7 +165,7 @@
 
         <div class="column Food">
             <div class="content">
-                <img src="nasi goreng kampung.jpg" alt="Nature" >
+                <img src="img/nasi goreng kampung.jpg" alt="Nature" >
                 <h4>Nasi Goreng Kampung</h4>
                 <p>RM 5.50</p>
                 <br>
@@ -175,7 +175,7 @@
 
         <div class="column Food">
             <div class="content">
-                <img src="kuey teow.jpeg" alt="Nature" >
+                <img src="img/kuey teow.jpeg" alt="Nature" >
                 <h4> Kuew Teow Lakna</h4>
                 <p>RM 7.00</p>
                 <br>
@@ -185,7 +185,7 @@
 
         <div class="column Food">
             <div class="content">
-                <img src="laksa penang.jpg" alt="Nature" >
+                <img src="img/laksa penang.jpg" alt="Nature" >
                 <h4>Laksa Penang</h4>
                 <p>RM 5.00</p>
                 <br>
@@ -195,7 +195,7 @@
 
         <div class="column Food">
             <div class="content">
-                <img src="tomyam.jpg" alt="Nature" >
+                <img src="img/tomyam.jpg" alt="Nature" >
                 <h4>Tomyam</h4>
                 <p>RM 5.00</p>
                 <br>
@@ -205,7 +205,7 @@
 
         <div class="column Beverage">
             <div class="content">
-                <img src="teh o ice lemon.jpg" alt="Car" >
+                <img src="img/teh o ice lemon.jpg" alt="Car" >
                 <h4>Ice Lemon Tea</h4>
                 <p>RM 3.00</p>
                 <br>
@@ -215,7 +215,7 @@
 
         <div class="column Beverage">
             <div class="content">
-                <img src="teh o ice.jpg" alt="Car" >
+                <img src="img/teh o ice.jpg" alt="Car" >
                 <h4>Teh O Ice</h4>
                 <p>RM 1.70</p>
                 <br>
@@ -226,7 +226,7 @@
 
         <div class="column Beverage">
             <div class="content">
-                <img src="teh ice.jpg" alt="Car">
+                <img src="img/teh ice.jpg" alt="Car">
                 <h4>Teh Ice</h4>
                 <p>RM 3.50</p>
                 <br>
@@ -236,7 +236,7 @@
 
         <div class="column Beverage">
             <div class="content">
-                <img src="sirap.jpg" alt="Car" >
+                <img src="img/sirap.jpg" alt="Car" >
                 <h4>Sirap</h4>
                 <p>RM 2.00</p>
                 <br>
@@ -246,7 +246,7 @@
 
         <div class="column Beverage">
             <div class="content">
-                <img src="sirap bandung.jpg" alt="Car">
+                <img src="img/sirap bandung.jpg" alt="Car">
                 <h4>Sirap Bandung</h4>
                 <p>RM 3.50</p>
                 <br>
@@ -256,7 +256,7 @@
 
         <div class="column Beverage">
             <div class="content">
-                <img src="ice coffee.jpg" alt="Car" >
+                <img src="img/ice coffee.jpg" alt="Car" >
                 <h4>Ice Coffee</h4>
                 <p>RM 3.00</p>
                 <br>
@@ -266,7 +266,7 @@
 
         <div class="column Dessert">
             <div class="content">
-                <img src="ice cream coklat.jpg" alt="Car" >
+                <img src="img/ice cream coklat.jpg" alt="Car" >
                 <h4>Ice Cream Chocolate </h4>
                 <p>RM 3.50</p>
                 <br>
@@ -276,7 +276,7 @@
 
         <div class="column Dessert">
             <div class="content">
-                <img src="ice cream strawberry.jpg" alt="Car" >
+                <img src="img/ice cream strawberry.jpg" alt="Car" >
                 <h4>Ice Cream Strawberry</h4>
                 <p>RM 3.00</p>
                 <br>
@@ -286,7 +286,7 @@
 
         <div class="column Dessert">
             <div class="content">
-                <img src="ice cream vanila.jpg" alt="Car" >
+                <img src="img/ice cream vanila.jpg" alt="Car" >
                 <h4>Ice Cream Vanilla</h4>
                 <p>RM 5.00</p>
                 <br>
