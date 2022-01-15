@@ -12,49 +12,66 @@
 <head>
     <title>LOGIN</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-    <%@ include file="login.html"%>
+    <link rel="stylesheet" href="css/login.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <div class="box">
-        <input type="checkbox" class="toggle-btn" name="">
-        <div class="loginStaff">
-            <form action="" method="">
-                <div class="input-group">
-                    <input type="text" placeholder="username" name="" class="inp">
-                </div>
+    <div class="signin-box">
+        <div class="left">
 
-                <div class="input-group">
-                    <input type="text" placeholder="*******" name="" class="inp">
-                </div>
-
-                <div class="input-group" style="margin-top: 20px;">
-                    <input type="submit" value="Login" class="inp submit-inp">
-                </div>
-                <br>
-                <h2>Do not register yet? <a href="signup.jsp"> Register Now </a> </h2>
-
-            </form>
         </div>
+        <div class="right">
+            <h2>SIGN IN</h2>
+            <div class="toggle-parent">
+                <input type="checkbox" id="toggle-btn" class="toggle-btn">
+            </div>
 
-        <div class="loginCustomer">
-            <form action="" method="">
-                <div class="input-group">
-                    <input type="text" placeholder="username" name="" class="inp">
-                </div>
+            <form class="loginCustomer" action="" method="post">
 
-                <div class="input-group">
-                    <input type="text" placeholder="*******" name="" class="inp">
-                </div>
+                <input type="text" placeholder="username" name="username" class="inp">
 
-                <div class="input-group" style="margin-top: 20px;">
-                    <input type="submit" value="Login" class="inp submit-inp">
-                </div>
+                <input type="password" placeholder="password" name="password" class="inp" style="margin-bottom: 40px;">
+
+                <div class="register-link">Do not register yet? <a href="signup.jsp"> Register Now </a> </div>
+
+
+                <input type="submit" value="Login" class="inp submit-inp">
+
             </form>
+
+            <form class="loginStaff" action="" method="post">
+
+                <input type="text" placeholder="username" name="username" class="inp">
+
+                <input type="password" placeholder="password" name="password" class="inp">
+
+                <input type="submit" value="Login" class="inp submit-inp">
+
+            </form>
+
+
+            <a href="index.jsp">
+                <input type="button" value="Back" class="inp submit-inp">
+            </a>
         </div>
     </div>
 </div>
-
+<script>
+    window.addEventListener('DOMContentLoaded', function(event){
+        document.querySelector('#toggle-btn').addEventListener('click', function(event) {
+            const toggleBtn = event.target;
+            const custForm = document.querySelector(".loginCustomer");
+            const staffForm = document.querySelector(".loginStaff");
+            if(toggleBtn.checked) {
+                custForm.style.display  = "none";
+                staffForm.style.display = "block";
+            } else {
+                custForm.style.display  = "block";
+                staffForm.style.display = "none";
+            }
+        })
+    })
+</script>
 </body>
 </html>

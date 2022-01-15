@@ -116,7 +116,7 @@
     <div class="row">
         <div class="column">
             <div class="content">
-                <img src="workericon.jpg" style="width:100%">
+                <img src="img/workericon.jpg" style="width:100%">
                 <h3>MANAGER</h3>
                 <p>Name : </p>
                 <button class="btn"><i class="fa fa-trash"></i> Delete</button>
@@ -124,7 +124,7 @@
         </div>
         <div class="column">
             <div class="content">
-                <img src="workericon.jpg" style="width:100%">
+                <img src="img/workericon.jpg" style="width:100%">
                 <h3>COOKER</h3>
                 <p>Name : </p>
                 <button class="btn"><i class="fa fa-trash"></i> Delete</button>
@@ -132,7 +132,7 @@
         </div>
         <div class="column">
             <div class="content">
-                <img src="workericon.jpg" style="width:100%">
+                <img src="img/workericon.jpg" style="width:100%">
                 <h3>CASHIER</h3>
                 <p>Name : </p>
                 <button class="btn"><i class="fa fa-trash"></i> Delete</button>
@@ -140,7 +140,7 @@
         </div>
         <div class="column">
             <div class="content">
-                <img src="workericon.jpg" style="width:100%">
+                <img src="img/workericon.jpg" style="width:100%">
                 <h3>KITCHEN ASSIST</h3>
                 <p>Name : </p>
                 <button class="btn"><i class="fa fa-trash"></i> Delete</button>
