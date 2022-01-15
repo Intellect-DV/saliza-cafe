@@ -72,7 +72,7 @@ public class CustomerServlet extends HttpServlet {
             cust.setCustomer(username, password, name, email);
 
             // add new customer
-            if(CustomerDA.addCustomer(cust)) {
+            if(CustomerDA.createCustomer(cust)) {
                 // todo - message , etc
                 System.out.println("New User added");
                 json.put("message", "New user added");
@@ -100,7 +100,7 @@ public class CustomerServlet extends HttpServlet {
             return;
         }
 
-        Customer cust = CustomerDA.getCustomer(username, password);
+        Customer cust = CustomerDA.retrieveCustomer(username, password);
         boolean succeed = false;
 
         if(cust.isValid()) {
@@ -144,7 +144,7 @@ public class CustomerServlet extends HttpServlet {
 
         if(session == null) {
             System.out.println("Invalid login session: need to login to store session");
-            json.put("error", "Input empty");
+            json.put("error", "Authorization failed!");
             jsonResponse(response, 401, json);
             return;
         }
@@ -163,7 +163,7 @@ public class CustomerServlet extends HttpServlet {
         }
 
         boolean succeed = false;
-        if(CustomerDA.getCustomer(currentCust.getCustomerUsername(), password).isValid()){
+        if(CustomerDA.retrieveCustomer(currentCust.getCustomerUsername(), password).isValid()){
             // update customer info
             Customer tempCust = new Customer();
             System.out.println("here to update customer info");
