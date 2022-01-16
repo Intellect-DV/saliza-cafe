@@ -114,6 +114,27 @@ body{
     background-color: #27ae60;
 }
 
+.message {
+    display: inline-block;
+    background-color: #3D97E1;
+    color: #CAE3F6;
+    visibility: hidden;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.message.show {
+    visibility: visible;
+}
+.message.succeed {
+    background-color: #0DAB76;
+    color: #EFFFFA;
+}
+.message.failed {
+    background-color: #FF3333;
+    color: #FFD6D6;
+}
+
 @media screen and  (max-width: 880px){
     .signup-box{
         grid-template-columns: 1fr;
