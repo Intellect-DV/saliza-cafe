@@ -13,7 +13,7 @@
 <a href="login.jsp" >LOGIN</a><br>
 <a href="update-account.jsp" >UPDATE ACCOUNT</a><br>
 <a href="registerWorker.jsp" >REGISTER WORKER</a><br>
-<a href="display-menu.jsp" >REGISTER WORKER</a><br>
+<a href="display-menu.jsp" >DISPLAY MENU</a><br>
 
 
 </body>
