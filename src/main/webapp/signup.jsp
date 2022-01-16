@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <%-- AXIOS - make  http request --%>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="text/javascript"  src="js/signup.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
 </head>
 <body>
 <div class="container">
