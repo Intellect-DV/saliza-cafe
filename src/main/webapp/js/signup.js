@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded',() => {
 
 
         for(let key of formData.keys()) {
-            params.append(key, formData.get(key));
+            params.append(key, String(formData.get(key)));
         }
 
         if (output.classList.contains("show")) output.classList.add("show");
