@@ -12,8 +12,14 @@
 <head>
     <title>Login | SalizaEja Cafe</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <%-- Google Font --%>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <%-- Boilerplate --%>
+    <link rel="stylesheet" href="css/boilerplate.css">
+
     <link rel="stylesheet" href="css/login.css">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -27,7 +33,7 @@
                 <input type="checkbox" id="toggle-btn" class="toggle-btn">
             </div>
 
-            <form class="loginCustomer" action="" method="post">
+            <form class="loginCustomer">
 
                 <input type="text" placeholder="username" name="username" class="inp">
 
@@ -40,7 +46,7 @@
 
             </form>
 
-            <form class="loginStaff" action="" method="post">
+            <form class="loginStaff">
 
                 <input type="text" placeholder="username" name="username" class="inp">
 
@@ -57,12 +63,17 @@
         </div>
     </div>
 </div>
+
+<div class="modalbox">
+
+</div>
 <script>
     window.addEventListener('DOMContentLoaded', function(event){
+        const custForm = document.querySelector("form.loginCustomer");
+        const staffForm = document.querySelector("form.loginStaff");
+
         document.querySelector('#toggle-btn').addEventListener('click', function(event) {
             const toggleBtn = event.target;
-            const custForm = document.querySelector(".loginCustomer");
-            const staffForm = document.querySelector(".loginStaff");
             if(toggleBtn.checked) {
                 custForm.style.display  = "none";
                 staffForm.style.display = "block";
@@ -70,6 +81,14 @@
                 custForm.style.display  = "block";
                 staffForm.style.display = "none";
             }
+        })
+
+        custForm.addEventListener('submit', function(event) {
+            alert(event.target)
+        })
+
+        staffForm.addEventListener('submit', function(event) {
+            alert(event.target)
         })
     })
 </script>

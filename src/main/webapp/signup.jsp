@@ -11,11 +11,18 @@
 <head>
     <title>Sign Up | SalizaEja Cafe</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <%-- Google Font --%>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <%-- Boilerplate --%>
+    <link rel="stylesheet" href="css/boilerplate.css">
+
     <link rel="stylesheet" href="css/signup.css">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
     <%-- AXIOS - make  http request --%>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="js/signup.js"></script>
+    <script type="text/javascript" src="js/signup.js" defer></script>
 </head>
 <body>
 <div class="container">
