@@ -17,24 +17,24 @@ window.addEventListener('DOMContentLoaded',() => {
 
 
         for(let key of formData.keys()) {
-            params.append(key, formData.get(key));
+            params.append(key, String(formData.get(key)));
         }
 
         if (output.classList.contains("show")) output.classList.add("show");
 
         axios.post(url, params)
             .then(response => {
-                const message = response.data.message;
+                const {message} = response.data;
                 if(message === "New user added") {
                     output.classList = "message show succeed";
                     output.innerText = "Succesfully registered!";
                 }
             })
-            .catch(error => {
-                const message = error.response.data.error;
+            .catch(err => {
+                const {error} = err.response.data;
                 output.classList = "message show failed";
-                if (message === "Username duplicated") output.innerText = "Please use another username!";
-                else output.innerText = message;
+                if (error === "Username duplicated") output.innerText = "Please use another username!";
+                else output.innerText = error;
             })
     })
 })

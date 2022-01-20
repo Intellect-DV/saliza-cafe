@@ -1,0 +1,20 @@
+:root {
+    --font-quicksand: 'Quicksand', sans-serif;
+
+    /* Color */
+    --color-red: rgba(230, 74, 74,1);
+    --color-btn-error: rgba(230, 74, 74,0.7);
+    --color-btn-error-hover: rgba(230, 74, 74,1);
+}
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-quicksand);
+}

@@ -1,4 +1,4 @@
-package com.dataacess;
+package com.dataaccess;
 
 import java.sql.*;
 import com.helper.QueryHelper;

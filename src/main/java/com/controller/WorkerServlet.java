@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.dataacess.WorkerDA;
+import com.dataaccess.WorkerDA;
 import com.model.Worker;
 import org.json.JSONObject;
 
@@ -8,7 +8,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.Locale;
 
 @WebServlet(name = "WorkerServlet", value = "/worker")
 public class WorkerServlet extends HttpServlet {
