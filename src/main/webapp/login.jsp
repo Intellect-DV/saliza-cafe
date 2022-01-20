@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="css/login.css">
     <%-- Modal style --%>
     <link rel="stylesheet" href="css/modal.css">
+
+    <%-- AXIOS - make  http request --%>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -48,7 +51,7 @@
 
             </form>
 
-            <form class="loginStaff">
+            <form class="loginWorker">
 
                 <input type="text" placeholder="username" name="username" class="inp">
 
@@ -84,25 +87,29 @@
 <script>
     window.addEventListener('DOMContentLoaded', function(event){
         const custForm = document.querySelector("form.loginCustomer");
-        const staffForm = document.querySelector("form.loginStaff");
+        const workerForm = document.querySelector("form.loginWorker");
         const modal = document.querySelector('.modal__backdrop');
+        const modalBtn = document.querySelector('.modalbox__action>button.btn');
 
+        // switch form (customer / worker)
         document.querySelector('#toggle-btn').addEventListener('click', function(event) {
             const toggleBtn = event.target;
             if(toggleBtn.checked) {
                 custForm.style.display  = "none";
-                staffForm.style.display = "block";
+                workerForm.style.display = "block";
             } else {
                 custForm.style.display  = "block";
-                staffForm.style.display = "none";
+                workerForm.style.display = "none";
             }
         })
 
+        // customer form handler
         custForm.addEventListener('submit', function(event) {
             event.preventDefault();
         })
 
-        staffForm.addEventListener('submit', function(event) {
+        // worker form handler
+        workerForm.addEventListener('submit', function(event) {
             event.preventDefault();
         })
     })

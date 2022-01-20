@@ -142,7 +142,7 @@ body{
 
 .toggle-btn:checked:before
 {
-    content: 'Staff';
+    content: 'Worker';
     left: 50%;
 }
 
@@ -151,7 +151,7 @@ body{
     position: relative;
 }
 
-.loginStaff {
+.loginWorker {
     display: none;
 }
 
