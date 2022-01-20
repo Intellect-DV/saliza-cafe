@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.dataacess.CustomerDA;
+import com.dataaccess.CustomerDA;
 import com.model.Customer;
 import org.json.JSONObject;
 

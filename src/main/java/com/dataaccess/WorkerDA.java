@@ -1,4 +1,4 @@
-package com.dataacess;
+package com.dataaccess;
 
 import com.helper.QueryHelper;
 import com.model.Worker;
