@@ -40,9 +40,9 @@
 
             <form class="loginCustomer">
 
-                <input type="text" placeholder="username" name="username" class="inp">
+                <input type="text" placeholder="username" name="username" class="inp" autocomplete="off" required>
 
-                <input type="password" placeholder="password" name="password" class="inp" style="margin-bottom: 40px;">
+                <input type="password" placeholder="password" name="password" class="inp" style="margin-bottom: 40px;" autocomplete="off" required>
 
                 <div class="register-link">Do not register yet? <a href="signup.jsp"> Register Now </a> </div>
 
@@ -53,9 +53,9 @@
 
             <form class="loginWorker">
 
-                <input type="text" placeholder="username" name="username" class="inp">
+                <input type="text" placeholder="username" name="username" class="inp" autocomplete="off" required>
 
-                <input type="password" placeholder="password" name="password" class="inp">
+                <input type="password" placeholder="password" name="password" class="inp" autocomplete="off" required>
 
                 <input type="submit" value="Login" class="inp submit-inp">
 
@@ -106,11 +106,42 @@
         // customer form handler
         custForm.addEventListener('submit', function(event) {
             event.preventDefault();
+
+            const formData = new FormData(custForm);
+            const params = new URLSearchParams();
+            const url = "./customer?action=login";
+
+            for(let key of formData.keys()) {
+                params.append(key, String(formData.get(key)));
+            }
+
+            axios.post(url,params)
+            .then(response => {
+                // const message = response.data.message;
+                const {message} = response.data;
+                console.log(response);
+                console.log("Response: " + message)
+            })
+            .catch(err => {
+                const {error} = err.response.data;
+
+                if(error === "Wrong username or password!") {
+                    modal.classList.remove("hide")
+                }
+            })
         })
 
         // worker form handler
         workerForm.addEventListener('submit', function(event) {
             event.preventDefault();
+        })
+
+        // close modal popup
+        modalBtn.addEventListener('click', function(event) {
+            console.log("button clicked: " + (modal.classList[1] === undefined));
+            if(modal.classList[1] === undefined) {
+                modal.classList.add("hide")
+            }
         })
     })
 </script>
