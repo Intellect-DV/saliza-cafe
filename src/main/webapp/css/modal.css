@@ -4,9 +4,10 @@
     height: 100vh;
     background-color: rgba(0,0,0,0.8);
     top: 0;
+    visibility: visible;
 }
 .modal__backdrop.hide {
-    display: none;
+    visibility: hidden;
 }
 
 .modalbox {
@@ -32,6 +33,7 @@
 .modal__backdrop.hide > .modalbox{
     visibility: hidden;
     opacity: 0;
+    transform: translate(-50%, -90%);
 }
 .modalbox__title {
     display: block;
