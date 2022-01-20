@@ -1,0 +1,49 @@
+.form_worker {
+    position: absolute;
+    width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 40px;
+    background: var(--color-black-trans);
+    right: 50%;
+    transform: translateX(50%);
+    margin-top: 130px;
+
+}
+.form_worker__title {
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+.form_worker > input {
+    display: block;
+    font-size: 1rem;
+}
+.form_worker > input:focus, .form_worker > input:active {
+    outline: 1px solid var(--color-orange);
+}
+.form_worker > button[type="submit"] {
+    all: unset;
+    cursor: pointer;
+    width: 40%;
+    margin: 0 auto;
+    font-size: inherit;
+    text-align: center;
+    background: var(--color-orange);
+    color: white;
+    font-weight: 600;
+    padding: 5px 10px;
+}
+.form_worker > button[type="submit"]:hover {
+    background: var(--color-orange-dark);
+}
+.form_worker > .form_worker__link {
+    color: white;
+    text-align: center;
+}
+.form_worker > .form_worker__link > a {
+    color: rgb(25, 140, 255);
+    font-weight: 700;
+}
