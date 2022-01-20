@@ -1,0 +1,70 @@
+.modal__backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.8);
+    top: 0;
+}
+.modal__backdrop.hide {
+    display: none;
+}
+
+.modalbox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    transform: translate(-50%, -50%);
+
+    transition: all ease-in-out 200ms;
+}
+.modal__backdrop > .modalbox{
+    visibility: visible;
+    opacity: 100%;
+}
+.modal__backdrop.hide > .modalbox{
+    visibility: hidden;
+    opacity: 0;
+}
+.modalbox__title {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: 600;
+}
+.modalbox__title.error {
+    color: var(--color-red);
+}
+.modalbox__content {
+    display: block;
+    height: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.modalbox__action {
+    display: block;
+}
+.modalbox__action > .btn {
+    all: unset;
+    cursor: pointer;
+    display: block;
+    padding: 5px 30px;
+    border-radius: 25px;
+    color: white;
+}
+.modalbox__action > .btn.error, .modalbox__action > .btn.error:active {
+    background: var(--color-btn-error);
+    transition: all ease-in-out 200ms;
+}
+.modalbox__action > .btn.error:hover {
+    background: var(--color-btn-error-hover);
+}

@@ -18,8 +18,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <%-- Boilerplate --%>
     <link rel="stylesheet" href="css/boilerplate.css">
-
+    <%-- Custom style --%>
     <link rel="stylesheet" href="css/login.css">
+    <%-- Modal style --%>
+    <link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
 <div class="container">
@@ -64,13 +66,26 @@
     </div>
 </div>
 
-<div class="modalbox">
-
+<div class="modal__backdrop hide">
+    <div class="modalbox">
+        <div class="modalbox__title error">
+            Login Failed
+        </div>
+        <div class="modalbox__content">
+            Username or Password is invalid. Please try again!
+        </div>
+        <div class="modalbox__action">
+            <button class="btn error">
+                Okay
+            </button>
+        </div>
+    </div>
 </div>
 <script>
     window.addEventListener('DOMContentLoaded', function(event){
         const custForm = document.querySelector("form.loginCustomer");
         const staffForm = document.querySelector("form.loginStaff");
+        const modal = document.querySelector('.modal__backdrop');
 
         document.querySelector('#toggle-btn').addEventListener('click', function(event) {
             const toggleBtn = event.target;
@@ -84,11 +99,11 @@
         })
 
         custForm.addEventListener('submit', function(event) {
-            alert(event.target)
+            event.preventDefault();
         })
 
         staffForm.addEventListener('submit', function(event) {
-            alert(event.target)
+            event.preventDefault();
         })
     })
 </script>
