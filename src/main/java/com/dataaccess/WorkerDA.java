@@ -74,7 +74,23 @@ public abstract class WorkerDA {
         return worker;
     }
 
-    public static void updateWorker() {
+    public static boolean updateWorkerProfile(Worker updateWorker, int id) {
+        boolean succeed = false;
+        try {
+            String sql = "UPDATE worker set username=?, name=?, email=? WHERE id=?";
 
+            int affectedRow  = QueryHelper.insertUpdateQuery(sql,new Object[]{
+                    updateWorker.getWorkerUsername(),
+                    updateWorker.getWorkerName(),
+                    updateWorker.getWorkerEmail(),
+                    id
+            });
+
+            if(affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
     }
 }

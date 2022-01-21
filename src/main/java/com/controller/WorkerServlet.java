@@ -37,6 +37,9 @@ public class WorkerServlet extends HttpServlet {
             case "login":
                 loginWorker(request, response);
                 break;
+            case "updateprofile":
+                updateProfile(request,response);
+                break;
         }
     }
 
@@ -102,6 +105,64 @@ public class WorkerServlet extends HttpServlet {
         jsonResponse(response, succeed ? 201 : 400, json);
     }
 
+    private static void updateProfile(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject json = new JSONObject();
+        String username, name, email;
+
+        username = request.getParameter("username");
+        name = request.getParameter("name");
+        email = request.getParameter("email");
+
+        if(username == null || name == null || email == null || username.equals("") || name.equals("") ||email.equals("")) {
+            System.out.println("Input empty");
+            json.put("error", "Input empty");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        // get manager session
+        HttpSession session = request.getSession(false);
+
+        if(session == null || session.getAttribute("workerObj") == null) {
+            System.out.println("Please login first before update profile");
+            json.put("error", "Authorization failed! Please login first!");
+            jsonResponse(response, 401, json);
+            return;
+        }
+
+        Worker currentWorker = (Worker) session.getAttribute("workerObj");
+
+        // check if username existed
+        boolean isUsernameExisted = WorkerDA.isUsernameExisted(username).isValid();
+        boolean success = false;
+
+        if(!isUsernameExisted || currentWorker.getWorkerUsername().equals(username)) {
+            // update profile
+            System.out.println("Update profile accepted");
+            Worker tempWorker = new Worker();
+
+            tempWorker.setWorkerUsername(username);
+            tempWorker.setWorkerName(name);
+            tempWorker.setWorkerEmail(email);
+
+            if (WorkerDA.updateWorkerProfile(tempWorker, currentWorker.getWorkerId())) {
+                currentWorker.setWorkerUsername(username);
+                currentWorker.setWorkerName(name);
+                currentWorker.setWorkerEmail(email);
+
+                session.setAttribute("workerObj", currentWorker);
+
+                json.put("message", "Profile updated");
+                success = true;
+            }
+        } else {
+            System.out.println("Cannot update: username duplicated!");
+            json.put("error","Username duplicated");
+        }
+
+        jsonResponse(response,  success ? 200 : 403, json);
+    }
+
     private static void deleteWorker(HttpServletRequest request, HttpServletResponse response) {
         JSONObject json = new JSONObject();
         System.out.println("deleteWorker");
@@ -150,6 +211,6 @@ public class WorkerServlet extends HttpServlet {
             System.out.println("invalidate session");
             request.getSession().invalidate();
         }
-        response.sendRedirect("/");
+        response.sendRedirect("/login.jsp");
     }
 }
