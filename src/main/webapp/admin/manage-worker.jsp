@@ -21,6 +21,10 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/manage-worker.css">
+    <link rel="stylesheet" href="../css/modal.css">
+
+    <%-- Axios --%>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header>
@@ -51,16 +55,78 @@
         </nav>
     </header>
     <div class="container">
-        <form class="form_worker" action="">
+        <form class="form_worker">
             <div class="form_worker__title">Create Worker</div>
             <input type="text" name="username" placeholder="Username" autocomplete="off" required>
             <input type="text" name="name" placeholder="Name" autocomplete="off" required>
-            <input type="text" name="email" placeholder="Email" autocomplete="off" required>
-            <input type="text" name="password" placeholder="Password" autocomplete="off" required>
+            <input type="email" name="email" placeholder="Email" autocomplete="off" required>
+            <input type="password" name="password" placeholder="Password" autocomplete="off" required>
 
             <button type="submit">Create</button>
             <span class="form_worker__link">Click <a href="./view-worker.jsp">here</a> to view worker.</span>
         </form>
     </div>
+
+    <div class="modal__backdrop hide">
+        <div class="modalbox">
+            <div class="modalbox__title success">
+                Success
+            </div>
+            <div class="modalbox__content">
+                New worker has been added!
+            </div>
+            <div class="modalbox__action">
+                <button class="btn success">
+                    Okay
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function(event) {
+            const  formWorker = document.querySelector('.form_worker');
+            const modal = document.querySelector('.modal__backdrop');
+            const modalboxTitle = document.querySelector('.modalbox__title');
+            const modalboxContent = document.querySelector('.modalbox__content');
+            const modalboxBtn = document.querySelector('.modalbox__action > .btn');
+
+            formWorker.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(formWorker);
+                const  params = new URLSearchParams();
+                const url = '/worker?action=add';
+
+                for(let key of formData.keys()) {
+                    params.append(key, String(formData.get(key)));
+                }
+
+                axios.post(url,params)
+                .then(response => {
+                    const {message} = response.data;
+                    if(message === "New worker added") {
+                        modalboxTitle.innerText = "Success";
+                        modalboxTitle.classList = "modalbox__title success";
+                        modalboxContent.innerText = "New worker has been added!";
+                        modalboxBtn.classList = "btn success";
+                        modal.classList = "modal__backdrop";
+                    }
+                })
+                .catch(err => {
+                    const {error} = err.response.data;
+                    modalboxTitle.innerText = "Failed";
+                    modalboxTitle.classList = "modalbox__title error";
+                    modalboxContent.innerText = error;
+                    modalboxBtn.classList = "btn error";
+                    modal.classList = "modal__backdrop";
+                })
+            })
+
+            modalboxBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                modal.classList = "modal__backdrop hide";
+            })
+        })
+    </script>
 </body>
 </html>

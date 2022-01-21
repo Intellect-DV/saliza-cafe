@@ -67,13 +67,14 @@ public class WorkerServlet extends HttpServlet {
         // get manager session
         HttpSession session = request.getSession(false);
 
-        if(session == null) {
+        if(session == null || session.getAttribute("workerObj") == null) {
             System.out.println("Login first before add worker");
             json.put("error", "Authorization failed! Please login first!");
             jsonResponse(response, 401, json);
             return;
         }
-        managerId = ((Worker) session.getAttribute("workerObj")).getWorkerId();
+        Worker manager = (Worker) session.getAttribute("workerObj");
+        managerId = manager.getWorkerId();
 
         // check existed username
         Worker worker = WorkerDA.isUsernameExisted(username);
