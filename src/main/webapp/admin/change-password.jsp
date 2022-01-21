@@ -43,7 +43,7 @@
             <input type="password" id="confirm-password" name="confirm-password">
         </div>
         <div class="form_password__item btn">
-            <button type="button" tabindex="0">Update Password</button>
+            <button type="submit" tabindex="0">Update Password</button>
         </div>
     </form>
 </body>
