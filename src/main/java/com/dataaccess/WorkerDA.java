@@ -7,6 +7,22 @@ import java.sql.SQLException;
 
 public abstract class WorkerDA {
 
+    // check username if existed in database
+    public static Worker isUsernameExisted(String username) {
+        Worker worker = new Worker();
+
+        try {
+            String sql = "SELECT id FROM worker WHERE username=?";
+            ResultSet rs = QueryHelper.getResultSet(sql, new String[]{username});
+
+            worker.setValid(rs.next()); rs.close();
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+
+        return worker;
+    }
+
     public static boolean createWorker(Worker worker, int managerId) {
         boolean succeed = false;
 
@@ -34,17 +50,19 @@ public abstract class WorkerDA {
         Worker worker = new Worker();
 
         try {
-            String sql = "SELECT id, name, email FROM worker WHERE username=? AND password=?";
+            // COALESCE = NVL in oracle
+            String sql = "SELECT id, name, email, COALESCE(manager_id,-1) AS manager_id FROM worker WHERE username=? AND password=?";
 
             ResultSet rs = QueryHelper.getResultSet(sql, new String[] {username, password});
 
             if(rs.next()) {
-                String name, email;
+                String name, email, managerId;
                 int id = rs.getInt("id");
                 name = rs.getString("name");
                 email = rs.getString("email");
+                managerId = rs.getString("manager_id");
 
-                worker.setWorker(id,username,name,email); worker.setValid(true);
+                worker.setWorker(id,username,name,email,managerId); worker.setValid(true);
             } else {
                 worker.setValid(false);
             }
@@ -56,7 +74,41 @@ public abstract class WorkerDA {
         return worker;
     }
 
-    public static void updateWorker() {
+    public static boolean updateWorkerProfile(Worker updateWorker, int id) {
+        boolean succeed = false;
+        try {
+            String sql = "UPDATE worker set username=?, name=?, email=? WHERE id=?";
 
+            int affectedRow  = QueryHelper.insertUpdateQuery(sql,new Object[]{
+                    updateWorker.getWorkerUsername(),
+                    updateWorker.getWorkerName(),
+                    updateWorker.getWorkerEmail(),
+                    id
+            });
+
+            if(affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
+    }
+
+    public static boolean updateWorkerPassword(String newPassword, int id) {
+        boolean succeed = false;
+        try{
+            String sql = "UPDATE worker set password=? WHERE id=?";
+
+            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Object[]{
+                newPassword,
+                id
+            });
+
+            if(affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return  succeed;
     }
 }

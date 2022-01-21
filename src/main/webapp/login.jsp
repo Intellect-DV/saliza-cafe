@@ -79,7 +79,7 @@
             Username or Password is invalid. Please try again!
         </div>
         <div class="modalbox__action">
-            <button class="btn error">
+            <button type="button" class="btn error" tabindex="0">
                 Okay
             </button>
         </div>
