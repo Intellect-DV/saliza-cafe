@@ -47,7 +47,7 @@
                 <a href="./manage-worker.jsp" class="navigation__item active">
                     <i class="fas fa-users"></i> Worker
                 </a>
-                <a href="#" class="navigation__item line">
+                <a href="./settings.jsp" class="navigation__item line">
                     <i class="fas fa-user-cog"></i> Settings
                 </a>
                 <a href="../worker?action=logout" class="navigation__item">
