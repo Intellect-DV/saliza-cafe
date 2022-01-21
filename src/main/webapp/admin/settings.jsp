@@ -71,7 +71,7 @@
             </div>
 
             <button type="submit">Update</button>
-            <span class="form_profile__link"><a href="#"> Change Password </a></span>
+            <span class="form_profile__link"><a href="change-password.jsp"> Change Password </a></span>
         </form>
     </div>
 
