@@ -50,17 +50,19 @@ public abstract class WorkerDA {
         Worker worker = new Worker();
 
         try {
-            String sql = "SELECT id, name, email FROM worker WHERE username=? AND password=?";
+            // COALESCE = NVL in oracle
+            String sql = "SELECT id, name, email, COALESCE(manager_id,-1) AS manager_id FROM worker WHERE username=? AND password=?";
 
             ResultSet rs = QueryHelper.getResultSet(sql, new String[] {username, password});
 
             if(rs.next()) {
-                String name, email;
+                String name, email, managerId;
                 int id = rs.getInt("id");
                 name = rs.getString("name");
                 email = rs.getString("email");
+                managerId = rs.getString("manager_id");
 
-                worker.setWorker(id,username,name,email); worker.setValid(true);
+                worker.setWorker(id,username,name,email,managerId); worker.setValid(true);
             } else {
                 worker.setValid(false);
             }
