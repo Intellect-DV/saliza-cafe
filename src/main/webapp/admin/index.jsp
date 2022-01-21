@@ -45,7 +45,7 @@
                 <a href="#" class="navigation__item line">
                     <i class="fas fa-user-cog"></i> Settings
                 </a>
-                <a href="#" class="navigation__item">
+                <a href="../worker?action=logout" class="navigation__item">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
