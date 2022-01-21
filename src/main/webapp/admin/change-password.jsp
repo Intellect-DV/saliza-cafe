@@ -21,6 +21,7 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/change-password.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <%-- AXIOS - make  http request --%>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/change-password.js"></script>
@@ -32,19 +33,35 @@
         </div>
         <div class="form_password__item input">
             <label for="current-password">Current Password</label>
-            <input type="password" id="current-password" name="current-password">
+            <input type="password" id="current-password" name="current-password" autocomplete="off" required>
         </div>
         <div class="form_password__item input">
             <label for="new-password">New Password</label>
-            <input type="password" id="new-password" name="new-password">
+            <input type="password" id="new-password" name="new-password" autocomplete="off" required>
         </div>
         <div class="form_password__item input">
             <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password">
+            <input type="password" id="confirm-password" name="confirm-password" autocomplete="off" required>
         </div>
         <div class="form_password__item btn">
             <button type="submit" tabindex="0">Update Password</button>
         </div>
     </form>
+
+    <div class="modal__backdrop hide">
+        <div class="modalbox">
+            <div class="modalbox__title">
+
+            </div>
+            <div class="modalbox__content">
+
+            </div>
+            <div class="modalbox__action">
+                <button type="button" class="btn" tabindex="0">
+                    Okay
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
