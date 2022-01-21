@@ -7,6 +7,22 @@ import java.sql.SQLException;
 
 public abstract class WorkerDA {
 
+    // check username if existed in database
+    public static Worker isUsernameExisted(String username) {
+        Worker worker = new Worker();
+
+        try {
+            String sql = "SELECT id FROM worker WHERE username=?";
+            ResultSet rs = QueryHelper.getResultSet(sql, new String[]{username});
+
+            worker.setValid(rs.next()); rs.close();
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+
+        return worker;
+    }
+
     public static boolean createWorker(Worker worker, int managerId) {
         boolean succeed = false;
 

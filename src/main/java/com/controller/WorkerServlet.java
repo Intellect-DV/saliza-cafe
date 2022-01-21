@@ -69,17 +69,31 @@ public class WorkerServlet extends HttpServlet {
 
         if(session == null) {
             System.out.println("Login first before add worker");
-            json.put("error", "Authorization failed!");
+            json.put("error", "Authorization failed! Please login first!");
             jsonResponse(response, 401, json);
             return;
         }
+        managerId = ((Worker) session.getAttribute("workerObj")).getWorkerId();
 
         // check existed username
+        Worker worker = WorkerDA.isUsernameExisted(username);
+        boolean succeed = false;
 
-        // add worker into database
+        if(!worker.isValid()) {
+            // add worker into database
+            worker.setWorker(username,password,name,email);
 
-        json.put("message", "addWorker");
-        jsonResponse(response, 200, json);
+            if(WorkerDA.createWorker(worker,managerId)) {
+                System.out.println("New worker added");
+                json.put("message", "New worker added");
+                succeed = true;
+            }
+        } else {
+            System.out.println("Cannot add: username duplicated");
+            json.put("error", "Username duplicated");
+        }
+
+        jsonResponse(response, succeed ? 201 : 400, json);
     }
 
     private static void deleteWorker(HttpServletRequest request, HttpServletResponse response) {
