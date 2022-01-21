@@ -84,7 +84,7 @@
 
             </div>
             <div class="modalbox__action">
-                <button class="btn">
+                <button type="button" class="btn" tabindex="0">
                     Okay
                 </button>
             </div>

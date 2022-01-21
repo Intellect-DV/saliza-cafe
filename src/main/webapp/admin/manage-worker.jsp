@@ -78,7 +78,7 @@
                 New worker has been added!
             </div>
             <div class="modalbox__action">
-                <button class="btn success">
+                <button type="button" class="btn success" tabindex="0">
                     Okay
                 </button>
             </div>

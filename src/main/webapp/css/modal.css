@@ -67,15 +67,15 @@
     color: white;
     transition: all ease-in-out 200ms;
 }
-.modalbox__action > .btn.error, .modalbox__action > .btn.error:active {
+.modalbox__action > .btn.error{
     background: var(--color-btn-error);
 }
-.modalbox__action > .btn.error:hover {
+.modalbox__action > .btn.error:hover, .modalbox__action > .btn.error:active, .modalbox__action > .btn.error:focus  {
     background: var(--color-btn-error-hover);
 }
-.modalbox__action > .btn.success, .modalbox__action > .btn.success:active {
+.modalbox__action > .btn.success {
     background: var(--color-btn-success);
 }
-.modalbox__action > .btn.success:hover {
+.modalbox__action > .btn.success:hover, .modalbox__action > .btn.success:active, .modalbox__action > .btn.success:focus {
     background: var(--color-btn-success-hover);
 }

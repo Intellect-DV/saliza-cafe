@@ -44,7 +44,7 @@
     font-weight: 600;
     padding: 5px 10px;
 }
-.form_profile > button[type="submit"]:hover {
+.form_profile > button[type="submit"]:hover, .form_profile > button[type="submit"]:focus {
     background: var(--color-orange-dark);
 }
 .form_profile > .form_profile__link {
