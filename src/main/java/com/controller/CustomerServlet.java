@@ -29,7 +29,7 @@ public class CustomerServlet extends HttpServlet {
             case("login"):
                 login(request, response);
                 break;
-            case("update"):
+            case("updateprofile"):
                 updateProfile(request, response);
                 break;
             default:
@@ -124,15 +124,14 @@ public class CustomerServlet extends HttpServlet {
 
     private void updateProfile(HttpServletRequest request, HttpServletResponse response) {
         JSONObject json = new JSONObject();
-        String username, name, email, password;
+        String username, name, email;
 
         username = request.getParameter("username");
         name = request.getParameter("name");
         email = request.getParameter("email");
-        password = request.getParameter("password");
 
-        if((username == null || name == null|| email == null || password == null) ||
-                (username.equals("") || name.equals("") ||email.equals("") || password.equals("")) ) {
+        if((username == null || name == null|| email == null ||
+                (username.equals("") || name.equals("") ||email.equals("")) )) {
             System.out.println("Input is empty");
             json.put("error", "Input empty");
             jsonResponse(response, 400, json);
@@ -142,50 +141,43 @@ public class CustomerServlet extends HttpServlet {
         // get from session - if none do not create session
         HttpSession session = request.getSession(false);
 
-        if(session == null) {
+        if(session == null || session.getAttribute("customerObj") == null) {
             System.out.println("Invalid login session: need to login to store session");
-            json.put("error", "Authorization failed!");
+            json.put("error", "Authorization failed! Please login first!");
             jsonResponse(response, 401, json);
             return;
         }
         Customer currentCust = (Customer) session.getAttribute("customerObj");
-        System.out.println("Customer ID: " + currentCust.getCustomerId());
-        System.out.println("Customer username: " + currentCust.getCustomerUsername());
-        System.out.println("Customer name: " + currentCust.getCustomerName());
-        System.out.println("Customer email: " + currentCust.getCustomerEmail());
+
+        boolean isUsernameExisted = CustomerDA.isUsernameExisted(username).isValid();
+        boolean succeed = false;
 
         // check username is existed
-        if(!currentCust.getCustomerUsername().equals(username) && CustomerDA.isUsernameExisted(username).isValid()) {
+        if(!currentCust.getCustomerUsername().equals(username) && isUsernameExisted) {
             System.out.println("invalid: username already taken");
             json.put("error", "Username already taken");
             jsonResponse(response, 403, json);
             return;
         }
 
-        boolean succeed = false;
-        if(CustomerDA.retrieveCustomer(currentCust.getCustomerUsername(), password).isValid()){
-            // update customer info
-            Customer tempCust = new Customer();
-            System.out.println("here to update customer info");
+        // update customer info
+        Customer tempCust = new Customer();
+        System.out.println("here to update customer info");
 
-            tempCust.setCustomerUsername(username);
-            tempCust.setCustomerName(name);
-            tempCust.setCustomerEmail(email);
+        tempCust.setCustomerUsername(username);
+        tempCust.setCustomerName(name);
+        tempCust.setCustomerEmail(email);
 
-            if(CustomerDA.updateCustomerProfile(tempCust, currentCust.getCustomerId())) {
-                // update session
-                currentCust.setCustomerUsername(username);
-                currentCust.setCustomerName(name);
-                currentCust.setCustomerEmail(email);
+        if(CustomerDA.updateCustomerProfile(tempCust, currentCust.getCustomerId())) {
+            // update session
+            currentCust.setCustomerUsername(username);
+            currentCust.setCustomerName(name);
+            currentCust.setCustomerEmail(email);
 
-                json.put("message", "Profile updated");
-                succeed = true;
-            } else {
-                json.put("error", "Cannot update profile");
-            }
+            json.put("message", "Profile updated");
+            succeed = true;
         } else {
-            System.out.println("wrong password");
-            json.put("error", "Wrong password");
+            json.put("error", "Cannot update profile");
         }
 
         jsonResponse(response, succeed ? 200 : 401, json);
