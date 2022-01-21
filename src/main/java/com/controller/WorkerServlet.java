@@ -13,6 +13,13 @@ import java.io.IOException;
 public class WorkerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if(action != null || action.equalsIgnoreCase("logout")){
+            logoutWorker(request, response);
+            return;
+        }
+
 
     }
 
@@ -138,5 +145,13 @@ public class WorkerServlet extends HttpServlet {
         }
 
         jsonResponse(response, succeed ? 200 : 400, json);
+    }
+
+    private static void logoutWorker(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        if(request.getSession(false) != null) {
+            System.out.println("invalidate session");
+            request.getSession().invalidate();
+        }
+        response.sendRedirect("/");
     }
 }
