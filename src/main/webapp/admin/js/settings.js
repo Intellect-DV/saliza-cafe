@@ -44,7 +44,6 @@ window.addEventListener("DOMContentLoaded", function(event) {
     })
 
     modalBtn.addEventListener("click", (event) => {
-        console.log("clicked");
         if(modal.classList == "modal__backdrop") {
             modal.classList = "modal__backdrop hide";
         }
