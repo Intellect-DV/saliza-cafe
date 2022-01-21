@@ -154,6 +154,8 @@ public class WorkerServlet extends HttpServlet {
 
                 json.put("message", "Profile updated");
                 success = true;
+            } else {
+                json.put("error", "Cannot update profile");
             }
         } else {
             System.out.println("Cannot update: username duplicated!");
