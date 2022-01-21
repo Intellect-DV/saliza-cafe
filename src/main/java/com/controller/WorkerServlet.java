@@ -15,12 +15,10 @@ public class WorkerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        if(action != null || action.equalsIgnoreCase("logout")){
+        if(action != null && action.equalsIgnoreCase("logout")){
             logoutWorker(request, response);
             return;
         }
-
-
     }
 
     @Override
