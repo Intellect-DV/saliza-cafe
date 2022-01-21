@@ -59,7 +59,7 @@
             <input type="text" name="password" placeholder="Password" autocomplete="off" required>
 
             <button type="submit">Create</button>
-            <span class="form_worker__link">Click <a href="#">here</a> to view worker.</span>
+            <span class="form_worker__link">Click <a href="./view-worker.jsp">here</a> to view worker.</span>
         </form>
     </div>
 </body>
