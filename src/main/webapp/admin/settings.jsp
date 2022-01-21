@@ -21,6 +21,10 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <%-- AXIOS - make  http request --%>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/settings.js" defer></script>
 </head>
 <body>
     <header>
@@ -69,6 +73,22 @@
             <button type="submit">Update</button>
             <span class="form_profile__link"><a href="#"> Change Password </a></span>
         </form>
+    </div>
+
+    <div class="modal__backdrop hide">
+        <div class="modalbox">
+            <div class="modalbox__title">
+
+            </div>
+            <div class="modalbox__content">
+
+            </div>
+            <div class="modalbox__action">
+                <button class="btn">
+                    Okay
+                </button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
