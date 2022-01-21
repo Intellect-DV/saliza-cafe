@@ -134,7 +134,7 @@ public class WorkerServlet extends HttpServlet {
         } else {
             // todo - wrong username / password
             System.out.println("Wrong username or password");
-            json.put("error", "Wrong username  or password!");
+            json.put("error", "Wrong username or password!");
         }
 
         jsonResponse(response, succeed ? 200 : 400, json);
