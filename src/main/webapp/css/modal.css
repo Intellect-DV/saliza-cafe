@@ -46,6 +46,9 @@
 .modalbox__title.error {
     color: var(--color-red);
 }
+.modalbox__title.success {
+    color: var(--color-green);
+}
 .modalbox__content {
     display: block;
     height: 100%;
@@ -62,11 +65,17 @@
     padding: 5px 30px;
     border-radius: 25px;
     color: white;
+    transition: all ease-in-out 200ms;
 }
 .modalbox__action > .btn.error, .modalbox__action > .btn.error:active {
     background: var(--color-btn-error);
-    transition: all ease-in-out 200ms;
 }
 .modalbox__action > .btn.error:hover {
     background: var(--color-btn-error-hover);
+}
+.modalbox__action > .btn.success, .modalbox__action > .btn.success:active {
+    background: var(--color-btn-success);
+}
+.modalbox__action > .btn.success:hover {
+    background: var(--color-btn-success-hover);
 }
