@@ -93,4 +93,22 @@ public abstract class WorkerDA {
 
         return succeed;
     }
+
+    public static boolean updateWorkerPassword(String newPassword, int id) {
+        boolean succeed = false;
+        try{
+            String sql = "UPDATE worker set password=? WHERE id=?";
+
+            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Object[]{
+                newPassword,
+                id
+            });
+
+            if(affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return  succeed;
+    }
 }
