@@ -27,7 +27,7 @@
     <header>
         <nav class="navigation">
             <div class="navigation__title">
-                Admin Name
+                ${sessionScope.workerObj.getWorkerUsername()}
             </div>
             <div class="navigation__list">
                 <a href="./" class="navigation__item active">
