@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded',() => {
         const params = new URLSearchParams();
         const url = "./customer?action=signup";
 
-
         for(let key of formData.keys()) {
             params.append(key, String(formData.get(key)));
         }
