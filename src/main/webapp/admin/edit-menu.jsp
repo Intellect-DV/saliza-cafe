@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Menu | SalizaEja Cafe</title>
@@ -35,12 +36,14 @@
                 <a href="#" class="navigation__item">
                     <i class="fas fa-utensils"></i> Order
                 </a>
+                <c:if test="${sessionScope.workerObj.getManagerId() == -1}">
                 <a href="./edit-menu.jsp" class="navigation__item active">
                     <i class="fas fa-clipboard-list"></i> Menu
                 </a>
                 <a href="./manage-worker.jsp" class="navigation__item">
                     <i class="fas fa-users"></i> Worker
                 </a>
+                </c:if>
                 <a href="./settings.jsp" class="navigation__item line">
                     <i class="fas fa-user-cog"></i> Settings
                 </a>
