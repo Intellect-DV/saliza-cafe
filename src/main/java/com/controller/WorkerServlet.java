@@ -220,9 +220,46 @@ public class WorkerServlet extends HttpServlet {
 
     private static void deleteWorker(HttpServletRequest request, HttpServletResponse response) {
         JSONObject json = new JSONObject();
-        System.out.println("deleteWorker");
-        json.put("message", "deleteWorker");
-        jsonResponse(response, 200, json);
+        int workerId;
+        String tempWorkerId = request.getParameter("workerId");
+
+        if(tempWorkerId == null || tempWorkerId.equals("")) {
+            json.put("error","Parameter empty");
+            jsonResponse(response,400,json);
+            return;
+        }
+
+        try {
+            workerId = Integer.parseInt(tempWorkerId);
+        } catch (NumberFormatException err) {
+            err.printStackTrace();
+            json.put("error","Id must be number");
+            jsonResponse(response,406,json);
+            return;
+        }
+
+
+        // check session
+        HttpSession session = request.getSession(false);
+
+        if(session == null || session.getAttribute("workerObj") == null) {
+            System.out.println("Please login first before update profile");
+            json.put("error", "Authorization failed! Please login first!");
+            jsonResponse(response, 401, json);
+            return;
+        }
+
+        boolean succeed = false;
+        if(WorkerDA.deleteWorker(workerId)) {
+            json.put("message", "Worker deleted");
+            succeed = true;
+        } else {
+            json.put("error", "Cannot delete worker");
+            json.put("reason", "Worker id not exist");
+            json.put("workerId", workerId);
+        }
+
+        jsonResponse(response, succeed ? 200 : 400, json);
     }
 
     private static void loginWorker(HttpServletRequest request, HttpServletResponse response) {
