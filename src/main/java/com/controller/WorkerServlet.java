@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "WorkerServlet", value = "/worker")
 public class WorkerServlet extends HttpServlet {
@@ -15,9 +16,15 @@ public class WorkerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        if(action != null && action.equalsIgnoreCase("logout")){
-            logoutWorker(request, response);
-            return;
+        if(action == null) return;
+
+        switch (action.toLowerCase()){
+            case "logout":
+                logoutWorker(request, response);
+                break;
+            case "retrieveworker":
+                retrieveWorker(request, response);
+                break;
         }
     }
 
@@ -260,5 +267,30 @@ public class WorkerServlet extends HttpServlet {
             request.getSession().invalidate();
         }
         response.sendRedirect("/login.jsp");
+    }
+
+    private static void retrieveWorker(HttpServletRequest request, HttpServletResponse response) {
+        // check session if the worker is manager
+        HttpSession session = request.getSession(false);
+
+        if(session == null || session.getAttribute("workerObj") == null) {
+            JSONObject json = new JSONObject();
+            json.put("error", "Authorization failed! Please login first.");
+            jsonResponse(response, 401, json);
+            return;
+        }
+
+        // retrieve worker supervised by worker
+        Worker currentWorker = (Worker) session.getAttribute("workerObj");
+        ArrayList<Worker> workers = WorkerDA.retrieveAllWorkerBelowManager(currentWorker.getWorkerId());
+        request.setAttribute("workers", workers);
+
+        // get jsp view to render
+        try {
+            response.setContentType("text/html");
+            request.getRequestDispatcher("/view/worker-table.jsp").include(request,response);
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
     }
 }

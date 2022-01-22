@@ -4,6 +4,7 @@ import com.helper.QueryHelper;
 import com.model.Worker;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public abstract class WorkerDA {
 
@@ -110,5 +111,33 @@ public abstract class WorkerDA {
         }
 
         return  succeed;
+    }
+
+    public static ArrayList<Worker> retrieveAllWorkerBelowManager(int id) {
+        ArrayList<Worker> workers = new ArrayList<>();
+
+        try {
+            String sql = "SELECT id, username, name, email FROM worker WHERE manager_id=? ORDER BY id ASC";
+
+            ResultSet rs = QueryHelper.getResultSet(sql,new Integer[]{
+                    id
+            });
+
+            if(rs != null) {
+                while(rs.next()) {
+                    Worker temp = new Worker();
+                    temp.setWorkerId(rs.getInt("id"));
+                    temp.setWorkerUsername(rs.getString("username"));
+                    temp.setWorkerName(rs.getString("name"));
+                    temp.setWorkerEmail(rs.getString("email"));
+
+                    workers.add(temp);
+                }
+            }
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return workers;
     }
 }
