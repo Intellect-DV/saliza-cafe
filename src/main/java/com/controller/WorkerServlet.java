@@ -224,7 +224,7 @@ public class WorkerServlet extends HttpServlet {
         String tempWorkerId = request.getParameter("workerId");
 
         if(tempWorkerId == null || tempWorkerId.equals("")) {
-            json.put("error","Parameter empty");
+            json.put("error","Parameter for worker id is empty");
             jsonResponse(response,400,json);
             return;
         }
@@ -233,7 +233,8 @@ public class WorkerServlet extends HttpServlet {
             workerId = Integer.parseInt(tempWorkerId);
         } catch (NumberFormatException err) {
             err.printStackTrace();
-            json.put("error","Id must be number");
+            json.put("error","Worker id must be number");
+            json.put("given", tempWorkerId);
             jsonResponse(response,406,json);
             return;
         }
@@ -251,11 +252,10 @@ public class WorkerServlet extends HttpServlet {
 
         boolean succeed = false;
         if(WorkerDA.deleteWorker(workerId)) {
-            json.put("message", "Worker deleted");
+            json.put("message", "Worker has been deleted");
             succeed = true;
         } else {
-            json.put("error", "Cannot delete worker");
-            json.put("reason", "Worker id not exist");
+            json.put("error", "Worker id not exist");
             json.put("workerId", workerId);
         }
 
