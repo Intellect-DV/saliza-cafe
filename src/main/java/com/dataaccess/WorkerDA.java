@@ -57,11 +57,12 @@ public abstract class WorkerDA {
             ResultSet rs = QueryHelper.getResultSet(sql, new String[] {username, password});
 
             if(rs.next()) {
-                String name, email, managerId;
-                int id = rs.getInt("id");
+                String name, email;
+                int id, managerId;
+                id = rs.getInt("id");
                 name = rs.getString("name");
                 email = rs.getString("email");
-                managerId = rs.getString("manager_id");
+                managerId = rs.getInt("manager_id");
 
                 worker.setWorker(id,username,name,email,managerId); worker.setValid(true);
             } else {
@@ -73,6 +74,34 @@ public abstract class WorkerDA {
         }
 
         return worker;
+    }
+
+    public static ArrayList<Worker> retrieveAllWorkerBelowManager(int id) {
+        ArrayList<Worker> workers = new ArrayList<>();
+
+        try {
+            String sql = "SELECT id, username, name, email FROM worker WHERE manager_id=? ORDER BY id ASC";
+
+            ResultSet rs = QueryHelper.getResultSet(sql,new Integer[]{
+                    id
+            });
+
+            if(rs != null) {
+                while(rs.next()) {
+                    Worker temp = new Worker();
+                    temp.setWorkerId(rs.getInt("id"));
+                    temp.setWorkerUsername(rs.getString("username"));
+                    temp.setWorkerName(rs.getString("name"));
+                    temp.setWorkerEmail(rs.getString("email"));
+
+                    workers.add(temp);
+                }
+            }
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return workers;
     }
 
     public static boolean updateWorkerProfile(Worker updateWorker, int id) {
@@ -113,31 +142,20 @@ public abstract class WorkerDA {
         return  succeed;
     }
 
-    public static ArrayList<Worker> retrieveAllWorkerBelowManager(int id) {
-        ArrayList<Worker> workers = new ArrayList<>();
+    public static boolean deleteWorker(int id) {
+        boolean succeed = false;
+        try{
+            String sql = "DELETE FROM worker WHERE id=?";
 
-        try {
-            String sql = "SELECT id, username, name, email FROM worker WHERE manager_id=? ORDER BY id ASC";
-
-            ResultSet rs = QueryHelper.getResultSet(sql,new Integer[]{
+            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Integer[] {
                     id
             });
 
-            if(rs != null) {
-                while(rs.next()) {
-                    Worker temp = new Worker();
-                    temp.setWorkerId(rs.getInt("id"));
-                    temp.setWorkerUsername(rs.getString("username"));
-                    temp.setWorkerName(rs.getString("name"));
-                    temp.setWorkerEmail(rs.getString("email"));
-
-                    workers.add(temp);
-                }
-            }
+            if(affectedRow == 1) succeed = true;
         } catch (Exception err) {
             err.printStackTrace();
         }
 
-        return workers;
+        return succeed;
     }
 }
