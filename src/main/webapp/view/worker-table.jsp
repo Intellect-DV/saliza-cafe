@@ -17,7 +17,9 @@
                 <td>${worker.getWorkerName()}</td>
                 <td>${worker.getWorkerEmail()}</td>
                 <td>
-                    <button>Delete</button>
+                    <button data-worker-id="${worker.getWorkerId()}" onclick="deleteWorker(event)">
+                        Delete
+                    </button>
                 </td>
             </tr>
             </c:forEach>
