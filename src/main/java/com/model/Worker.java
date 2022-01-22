@@ -6,7 +6,7 @@ public class Worker {
     private String workerPassword;
     private String workerName;
     private String workerEmail;
-    private String managerId;
+    private int managerId;
     private boolean valid;
 
     public Worker() {
@@ -14,10 +14,10 @@ public class Worker {
         this.workerPassword = null;
         this.workerName = null;
         this.workerEmail = null;
-        this.managerId = null;
+        this.managerId = -2;
     }
 
-    public Worker(String workerUsername, String workerPassword, String workerName, String workerEmail, String managerId) {
+    public Worker(String workerUsername, String workerPassword, String workerName, String workerEmail, int managerId) {
         this.workerUsername = workerUsername;
         this.workerPassword = workerPassword;
         this.workerName = workerName;
@@ -41,7 +41,7 @@ public class Worker {
         this.workerEmail = workerEmail;
     }
 
-    public void setWorker(int workerId, String workerUsername, String workerName, String workerEmail, String managerId) {
+    public void setWorker(int workerId, String workerUsername, String workerName, String workerEmail, int managerId) {
         this.workerId = workerId;
         this.workerUsername = workerUsername;
         this.workerName = workerName;
@@ -92,11 +92,9 @@ public class Worker {
 
     public void setWorkerEmail(String workerEmail) { this.workerEmail = workerEmail; }
 
-    public String getManagerId() {
-        return managerId;
-    }
+    public int getManagerId() { return managerId; }
 
-    public void setManagerId(String managerId) {
+    public void setManagerId(int managerId) {
         this.managerId = managerId;
     }
 
