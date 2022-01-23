@@ -101,6 +101,7 @@
     all: unset;
     cursor: pointer;
     display: inline-block;
+    box-shadow: 0 0 20px var(--color-black-trans);
     background: var(--color-orange);
     color: white;
     font-weight: 600;
