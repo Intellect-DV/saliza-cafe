@@ -1,7 +1,3 @@
-:root {
-    --color-orange: #f69d5c;
-    --color-black-trans: rgba(0,0,0,0.6);
-}
 body:after {
     content: '';
     position: fixed;

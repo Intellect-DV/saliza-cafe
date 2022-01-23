@@ -22,6 +22,9 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/edit-menu.css">
+    <%-- Script --%>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/edit-menu.js" defer></script>
 </head>
 <body>
     <header>
@@ -54,116 +57,25 @@
         </nav>
     </header>
     <div class="container">
+        <div class="filter">
+            <div class="filter__box">
+                <div class="filter__item">
+                    <button class="active" data-menu-type="food">Food</button>
+                </div>
+                <div class="filter__item">
+                    <button data-menu-type="beverage">Beverage</button>
+                </div>
+                <div class="filter__item">
+                    <button data-menu-type="dessert">Dessert</button>
+                </div>
+            </div>
+        </div>
         <div class="menu">
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/nasi-lemak-featured-1024x576.jpg" alt="Nasi Lemak">
-                </div>
-                <div class="menu__title">Nasi Lemak</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/mee_goreng.jpg" alt="Nasi Goreng">
-                </div>
-                <div class="menu__title">Nasi Goreng</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/nasi goreng kampung.jpg" alt="Nasi Goreng Kampung">
-                </div>
-                <div class="menu__title">Nasi Goreng Kampung</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/kuey teow.jpeg" alt="Kuey Teow">
-                </div>
-                <div class="menu__title">Kuey Teow</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/laksa penang.jpg" alt="Laksa Penang">
-                </div>
-                <div class="menu__title">Laksa Penang</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/nasi-lemak-featured-1024x576.jpg" alt="Nasi Lemak">
-                </div>
-                <div class="menu__title">Nasi Lemak</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/mee_goreng.jpg" alt="Nasi Goreng">
-                </div>
-                <div class="menu__title">Nasi Goreng</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/nasi goreng kampung.jpg" alt="Nasi Goreng Kampung">
-                </div>
-                <div class="menu__title">Nasi Goreng Kampung</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/kuey teow.jpeg" alt="Kuey Teow">
-                </div>
-                <div class="menu__title">Kuey Teow</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="menu__item">
-                <div class="menu__image">
-                    <img src="../img/laksa penang.jpg" alt="Laksa Penang">
-                </div>
-                <div class="menu__title">Laksa Penang</div>
-                <div class="menu__price">RM 3.00</div>
-                <div class="menu__action">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
+
+        </div>
+        <div class="add_menu">
+            <div class="add_menu__item">
+                <a href="add-menu.jsp">Add Menu</a>
             </div>
         </div>
     </div>

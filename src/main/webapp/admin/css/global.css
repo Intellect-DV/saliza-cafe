@@ -3,7 +3,7 @@
     --color-orange-dark: #f77313;
     --color-black-trans: rgba(0,0,0,0.6);
 }
-body:after {
+body:before {
     content: '';
     position: fixed;
     left: 0;
@@ -17,7 +17,7 @@ body:after {
 }
 header {
     position: fixed;
-    width: 30vh;
+    width: 15vw;
 }
 .navigation {
     background: var(--color-black-trans);
