@@ -38,7 +38,7 @@
     display: grid;
     grid-template-columns: 25fr 25fr 25fr 25fr;
     gap: 20px;
-    padding: 60px 30px;
+    padding: 40px 30px;
 }
 .menu > .menu__item {
     display: block;
@@ -52,6 +52,7 @@
     padding: 10px;
     overflow: hidden;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 .menu__image > img {
     display: block;
@@ -80,6 +81,13 @@
     cursor: pointer;
     font-size: inherit;
     padding: 8px 30px;
+    background: none;
+    border: 2px solid white;
+    color: white;
+}
+.menu__item > .menu__action > button:hover, .menu__item > .menu__action > button:focus {
+    background: var(--color-orange);
+    border-color: var(--color-orange);
 }
 .add_menu {
     margin-bottom: 30px;
