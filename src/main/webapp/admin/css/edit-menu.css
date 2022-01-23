@@ -21,7 +21,7 @@
     padding: 10px 20px;
     cursor: pointer;
 }
-.filter__item > button:hover {
+.filter__item > button:hover, .filter__item > button:focus {
     border-color: var(--color-orange);
     color: var(--color-orange);
 }
@@ -29,7 +29,7 @@
     background: var(--color-orange);
     border-color: var(--color-orange);
 }
-.filter__item > button.active:hover {
+.filter__item > button.active:hover, .filter__item > button.active:focus {
     color: white;
     background: var(--color-orange-dark);
     border-color: var(--color-orange-dark);
@@ -80,4 +80,25 @@
     cursor: pointer;
     font-size: inherit;
     padding: 8px 30px;
+}
+.add_menu {
+    margin-bottom: 30px;
+}
+.add_menu__item {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+.add_menu__item > a {
+    all: unset;
+    cursor: pointer;
+    display: inline-block;
+    background: var(--color-orange);
+    color: white;
+    font-weight: 600;
+    padding: 10px 0;
+    width: 100%;
+}
+.add_menu__item > a:hover, .add_menu__item > a:focus {
+    background: var(--color-orange-dark);
 }
