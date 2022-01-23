@@ -50,3 +50,6 @@
     color: white;
     cursor: pointer;
 }
+#form_add_menu > button:hover, #form_add_menu > button:active {
+    background: var(--color-orange-dark);
+}
