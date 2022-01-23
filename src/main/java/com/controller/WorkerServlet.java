@@ -325,7 +325,7 @@ public class WorkerServlet extends HttpServlet {
         // get jsp view to render
         try {
             response.setContentType("text/html");
-            request.getRequestDispatcher("/view/worker-table.jsp").include(request,response);
+            request.getRequestDispatcher("/view/view-worker__worker-table.jsp").include(request,response);
         } catch (Exception err) {
             err.printStackTrace();
         }
