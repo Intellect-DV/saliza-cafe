@@ -22,6 +22,8 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/edit-menu.css">
+    <%-- Script --%>
+    <script src="js/edit-menu.js" defer></script>
 </head>
 <body>
     <header>
@@ -54,6 +56,19 @@
         </nav>
     </header>
     <div class="container">
+        <div class="filter">
+            <div class="filter__box">
+                <div class="filter__item">
+                    <button class="active">Food</button>
+                </div>
+                <div class="filter__item">
+                    <button>Beverage</button>
+                </div>
+                <div class="filter__item">
+                    <button>Dessert</button>
+                </div>
+            </div>
+        </div>
         <div class="menu">
             <div class="menu__item">
                 <div class="menu__image">
