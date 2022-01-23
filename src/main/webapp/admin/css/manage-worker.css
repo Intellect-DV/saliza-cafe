@@ -20,9 +20,10 @@
 .form_worker > input {
     display: block;
     font-size: 1rem;
+    border: none;
 }
 .form_worker > input:focus, .form_worker > input:active {
-    outline: 1px solid var(--color-orange);
+    outline: 2px solid var(--color-orange);
 }
 .form_worker > button[type="submit"] {
     all: unset;
