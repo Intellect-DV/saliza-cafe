@@ -17,7 +17,7 @@ body:after {
 }
 header {
     position: fixed;
-    width: 30vh;
+    width: 15vw;
 }
 .navigation {
     background: var(--color-black-trans);
