@@ -105,8 +105,8 @@ public class MenuServlet extends HttpServlet {
         }
 
         String imageFileName = part.getSubmittedFileName();
-        String urlPathForDB = "/upload/" + imageFileName; // /images/for discord-01.png
-        String savePath = applicationPath + "upload" + File.separator + imageFileName; // D:\heroku\\saliza-cafe\\target\\saliza-cafe-1.0-SNAPSHOT\\upload\\for discord-01.png
+        String urlPathForDB = "/upload/" + imageFileName;
+        String savePath = applicationPath + "upload" + File.separator + imageFileName;
 
         if(!new File(applicationPath + "upload").exists()) {
             boolean created  = new File(applicationPath + "upload").mkdir();
