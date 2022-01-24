@@ -63,7 +63,7 @@
             </form>
 
 
-            <a href="index.jsp">
+            <a href="/">
                 <input type="button" value="Back" class="inp submit-inp">
             </a>
         </div>

@@ -46,7 +46,7 @@
                 <div id="message" class="message">Please wait</div>
                 <input type="submit" value="Register" class="inp submit-inp">
 
-                <a href="index.jsp">
+                <a href="/">
                     <input type="button" value="Back" class="inp submit-inp">
                 </a>
             </form>
