@@ -21,13 +21,21 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/update-menu.css">
+    <%-- AXIOS - make  http request --%>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/update-menu.js" defer></script>
 </head>
 <body>
-    <form id="form_update_menu" enctype="multipart/form-data">
+    <form id="form_update_menu" enctype="multipart/form-data" data-menu-id='${param.id}'>
         <div class="title">Update Menu</div>
 
+        <label>Name</label>
         <input type="text" name="name" autocomplete="off" placeholder="Name" required>
+
+        <label>Price (RM)</label>
         <input type="number" name="price" min="0.00" max="1000.00" step="0.01" placeholder="Price" autocomplete="off" required>
+
+        <label>Description</label>
         <input type="text" name="description" placeholder="Description" autocomplete="off" required>
 
         <button type="submit">Update</button>
