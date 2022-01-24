@@ -4,12 +4,23 @@ const inputName = document.querySelector("input[name='name']");
 const inputPrice = document.querySelector("input[name='price']")
 const inputDescription = document.querySelector("input[name='description']");
 
+const modal = document.querySelector(".modal__backdrop");
+const modalTitle = document.querySelector(".modalbox__title");
+const modalContent = document.querySelector(".modalbox__content");
+const modalBtn = document.querySelector(".modalbox__action > .btn");
+
 window.addEventListener("DOMContentLoaded", () => {
     getMenuInfo();
 
     formUpdate.addEventListener("submit", event => {
         event.preventDefault();
         updateMenuInfo();
+    })
+
+    modalBtn.addEventListener("click", (event) => {
+        if(modal.classList == "modal__backdrop") {
+            modal.classList = "modal__backdrop hide";
+        }
     })
 })
 
@@ -40,9 +51,21 @@ const updateMenuInfo = () => {
 
     axios.post(url, params)
         .then(response => {
-            console.log(response.data);
+            const {message} = response.data;
+
+            modalTitle.innerText = "Success";
+            modalTitle.classList = "modalbox__title success";
+            modalContent.innerText = message;
+            modalBtn.classList = "btn success";
+            modal.classList = "modal__backdrop";
         })
         .catch(err => {
-            console.log(err.response.data);
+            const {error} = err.response.data;
+
+            modalTitle.innerText = "Failed";
+            modalTitle.classList = "modalbox__title error";
+            modalContent.innerText = error;
+            modalBtn.classList = "btn error";
+            modal.classList = "modal__backdrop";
         })
 }
