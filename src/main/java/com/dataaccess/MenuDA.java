@@ -57,7 +57,7 @@ public abstract class MenuDA {
         Menu menu = new Menu();
 
         try {
-            String sql = "SELECT id, name, price, description FROM menu WHERE id=?";
+            String sql = "SELECT id, name, price, description, pic_path FROM menu WHERE id=?";
 
             ResultSet rs = QueryHelper.getResultSet(sql,new Integer[]{id});
 
@@ -66,6 +66,7 @@ public abstract class MenuDA {
                 menu.setItemPrice(rs.getDouble("price"));
                 menu.setItemName(rs.getString("name"));
                 menu.setItemDescription(rs.getString("description"));
+                menu.setItemPicUrl(rs.getString("pic_path"));
             }
         } catch (Exception err) {
             err.printStackTrace();

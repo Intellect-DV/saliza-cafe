@@ -36,7 +36,7 @@ public class MenuServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-
+        String applicationPath = getServletContext().getRealPath("");
         if(action == null) return;
 
         switch (action.toLowerCase()) {
@@ -44,11 +44,11 @@ public class MenuServlet extends HttpServlet {
                 updateMenuInfo(request, response);
                 break;
             case "createmenu":
-                String applicationPath = getServletContext().getRealPath("");
+
                 createMenu(request, response, applicationPath);
                 break;
             case "deletemenu":
-                deleteMenu(request, response);
+                deleteMenu(request, response, applicationPath);
                 break;
         }
     }
@@ -260,7 +260,7 @@ public class MenuServlet extends HttpServlet {
         jsonResponse(response, succeed ? 200 : 400, json);
     }
 
-    private static void deleteMenu(HttpServletRequest request, HttpServletResponse response) {
+    private static void deleteMenu(HttpServletRequest request, HttpServletResponse response, String applicationPath) {
         JSONObject json = new JSONObject();
         HttpSession session = request.getSession(false);
 
@@ -299,9 +299,17 @@ public class MenuServlet extends HttpServlet {
 
         if(id == -1) return;
 
+        String picUrl = MenuDA.retrieveMenuById(id).getItemPicUrl();
+        String realPath = applicationPath + "upload" + File.separator + picUrl.split("/")[2];
+
         boolean succeed = MenuDA.deleteMenu(id);
 
         if(succeed) {
+            File file = new File(realPath);
+            if(file.exists()) {
+                file.delete(); // delete file from upload folder
+            }
+
             json.put("message", "The menu has been successfully deleted!");
             jsonResponse(response, 200, json);
             return;
