@@ -6,6 +6,7 @@
     </div>
     <div class="menu__title">${menu.getItemName()}</div>
     <div class="menu__price">${menu.getItemPriceToCurrency()}</div>
+    <div class="menu__desc">${menu.getItemDescription()}</div>
     <div class="menu__action">
         <button onclick='window.location.href="update-menu.jsp?id=${menu.getItemId()}"'>Update</button>
         <button>Delete</button>
