@@ -48,5 +48,8 @@ window.addEventListener("DOMContentLoaded", () => {
         if(modal.classList == "modal__backdrop") {
             modal.classList = "modal__backdrop hide";
         }
+        if(modalBtn.classList.contains("success")) {
+            window.location.replace("edit-menu.jsp");
+        }
     })
 })
