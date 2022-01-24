@@ -21,6 +21,9 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/add-menu.css">
+    <%-- AXIOS - make  http request --%>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/add-menu.js" defer></script>
 </head>
 <body>
     <form id="form_add_menu" enctype="multipart/form-data">
