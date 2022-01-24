@@ -22,6 +22,7 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/edit-menu.css">
+    <link rel="stylesheet" href="../css/modal_confirm.css">
     <%-- Script --%>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/edit-menu.js" defer></script>
@@ -79,5 +80,25 @@
             </div>
         </div>
     </div>
+
+    <div class="modal_confirm__backdrop hide">
+        <div class="modal_confirm__box">
+            <div class="title error">
+                Delete Menu
+            </div>
+            <div class="content">
+                Are you confirm?
+            </div>
+            <div class="action">
+                <button id="btnCancel" type="button" class="btn error" tabindex="0">
+                    No
+                </button>
+                <button id="btnDelete" type="button" class="btn error" tabindex="0">
+                    Yes
+                </button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -49,6 +49,12 @@ function getWorker() {
             root.innerHTML = response.data;
         })
         .catch(err => {
+            const {error} = err.response.data;
 
+            modalTitle.innerText = "Failed";
+            modalContent.innerText = error;
+            modalTitle.classList = "modalbox__title error";
+            modalBtn.classList = "btn error";
+            modal.classList = "modal__backdrop";
         })
 }

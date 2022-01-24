@@ -7,8 +7,26 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public abstract class MenuDA {
-    public static void createMenu() {
+    public static boolean createMenu(Menu menu) {
         // create menu
+        boolean succeed = false;
+        try {
+            String sql = "INSERT INTO menu(name, price, description, pic_path, type) VALUES (?,?,?,?,?)";
+
+            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Object[] {
+                    menu.getItemName(),
+                    menu.getItemPrice(),
+                    menu.getItemDescription(),
+                    menu.getItemPicUrl(),
+                    menu.getItemType()
+            });
+
+            if(affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
     }
 
     public static ArrayList<Menu> retrieveMenus(String type) {
@@ -39,7 +57,7 @@ public abstract class MenuDA {
         Menu menu = new Menu();
 
         try {
-            String sql = "SELECT id, name, price, description FROM menu WHERE id=?";
+            String sql = "SELECT id, name, price, description, pic_path FROM menu WHERE id=?";
 
             ResultSet rs = QueryHelper.getResultSet(sql,new Integer[]{id});
 
@@ -48,6 +66,7 @@ public abstract class MenuDA {
                 menu.setItemPrice(rs.getDouble("price"));
                 menu.setItemName(rs.getString("name"));
                 menu.setItemDescription(rs.getString("description"));
+                menu.setItemPicUrl(rs.getString("pic_path"));
             }
         } catch (Exception err) {
             err.printStackTrace();
@@ -56,11 +75,41 @@ public abstract class MenuDA {
         return menu;
     }
 
-    public static void updateMenu() {
+    public static boolean updateMenuInfo(int id, String name, double price, String description) {
         // update menu
+        boolean succeed = false;
+
+        try {
+            String sql = "UPDATE menu SET name=?, price=?, description=? WHERE id=?";
+
+            int affectedRow = QueryHelper.insertUpdateQuery(sql,new Object[] {
+                    name, price, description, id
+            });
+
+            if (affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
     }
 
-    public static void deleteMenu() {
+    public static boolean deleteMenu(Integer id) {
         // delete menu
+        boolean succeed = false;
+
+        try {
+            String sql = "DELETE FROM menu WHERE id=?";
+
+            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Integer[]{
+                    id
+            });
+
+            if(affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
     }
 }
