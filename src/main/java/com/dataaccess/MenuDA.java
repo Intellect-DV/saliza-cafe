@@ -7,8 +7,26 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public abstract class MenuDA {
-    public static void createMenu() {
+    public static boolean createMenu(Menu menu) {
         // create menu
+        boolean succeed = false;
+        try {
+            String sql = "INSERT INTO menu(name, price, description, pic_path, type) VALUES (?,?,?,?,?)";
+
+            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Object[] {
+                    menu.getItemName(),
+                    menu.getItemPrice(),
+                    menu.getItemDescription(),
+                    menu.getItemPicUrl(),
+                    menu.getItemType()
+            });
+
+            if(affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
     }
 
     public static ArrayList<Menu> retrieveMenus(String type) {
