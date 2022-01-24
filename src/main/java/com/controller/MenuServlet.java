@@ -8,10 +8,14 @@ import org.json.JSONObject;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet(name = "MenuServlet", value = "/menu")
+@MultipartConfig( fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50)
 public class MenuServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +43,10 @@ public class MenuServlet extends HttpServlet {
             case "updatemenuinfo":
                 updateMenuInfo(request, response);
                 break;
+            case "createmenu":
+                String applicationPath = getServletContext().getRealPath("");
+                createMenu(request, response, applicationPath);
+                break;
         }
     }
 
@@ -50,6 +58,81 @@ public class MenuServlet extends HttpServlet {
         } catch (IOException err) {
             err.printStackTrace();
         }
+    }
+
+    private static void createMenu(HttpServletRequest request, HttpServletResponse response, String applicationPath) {
+        JSONObject json = new JSONObject();
+
+        Part part;
+        String menuName, menuPriceTemp, menuDescription, menuType;
+
+        menuName = request.getParameter("name");
+        menuPriceTemp = request.getParameter("price");
+        menuDescription = request.getParameter("description");
+        menuType = request.getParameter("menu-type");
+
+        if(menuName == null || menuPriceTemp == null || menuDescription == null || menuType == null ||
+                menuName.equals("") || menuPriceTemp.equals("") || menuDescription.equals("") || menuType.equals("")) {
+            json.put("error", "Input is empty");
+            jsonResponse(response, 401, json);
+            return;
+        }
+
+        double menuPrice = -1;
+        try {
+            menuPrice = Double.parseDouble(menuPriceTemp);
+        } catch (Exception err) {
+            err.printStackTrace();
+            json.put("error", "Price must a number and not null");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        try {
+            part = request.getPart("image");
+        } catch (Exception err) {
+            err.printStackTrace();
+            json.put("error", err.getMessage());
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        if(part == null) {
+            json.put("error", "Image file is null");
+        }
+
+        String imageFileName = part.getSubmittedFileName();
+        String urlPathForDB = "/upload/" + imageFileName; // /images/for discord-01.png
+        String savePath = applicationPath + "upload" + File.separator + imageFileName; // D:\heroku\\saliza-cafe\\target\\saliza-cafe-1.0-SNAPSHOT\\upload\\for discord-01.png
+
+        if(!new File(applicationPath + "upload").exists()) {
+            boolean created  = new File(applicationPath + "upload").mkdir();
+            if(!created) {
+                System.out.println("Could not create folder: " + applicationPath + "upload");
+            }
+        }
+
+        try {
+            part.write(savePath);
+        } catch (Exception err) {
+            err.printStackTrace();
+            json.put("error", "Could not upload image file!");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        Menu menu = new Menu(menuName, menuPrice, menuDescription, urlPathForDB, menuType);
+
+        boolean succeed = MenuDA.createMenu(menu);
+
+        if(succeed) {
+            json.put("message", "Menu has been created!");
+            jsonResponse(response, 200, json);
+            return;
+        }
+
+        json.put("error", "Could not create menu.");
+        jsonResponse(response, 400, json);
     }
 
     private static void getMenus(HttpServletRequest request, HttpServletResponse response) {
