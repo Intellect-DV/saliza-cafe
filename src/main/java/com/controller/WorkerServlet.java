@@ -239,7 +239,6 @@ public class WorkerServlet extends HttpServlet {
             return;
         }
 
-
         // check session
         HttpSession session = request.getSession(false);
 
