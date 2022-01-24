@@ -6,7 +6,7 @@ public class Worker {
     private String workerPassword;
     private String workerName;
     private String workerEmail;
-    private int managerId;
+    private int managerId; // -2 for null, -1 for manager
     private boolean valid;
 
     public Worker() {
