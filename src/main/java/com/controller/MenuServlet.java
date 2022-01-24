@@ -20,7 +20,10 @@ public class MenuServlet extends HttpServlet {
 
         switch (action.toLowerCase()) {
             case "getmenu":
-                getmenu(request, response);
+                getMenu(request, response);
+                break;
+            case "getmenuinfo":
+                getMenuInfo(request, response);
                 break;
         }
     }
@@ -40,12 +43,12 @@ public class MenuServlet extends HttpServlet {
         }
     }
 
-    private static void getmenu(HttpServletRequest request, HttpServletResponse response) {
+    private static void getMenu(HttpServletRequest request, HttpServletResponse response) {
         String type = request.getParameter("type");
         JSONObject json = new JSONObject();
         if(type == null || type.equals("")) return;
 
-        ArrayList <Menu> menus = MenuDA.retrieveMenu(type);
+        ArrayList <Menu> menus = MenuDA.retrieveMenus(type);
 
 
         if(menus.size() == 0) {
@@ -62,5 +65,45 @@ public class MenuServlet extends HttpServlet {
         } catch (Exception err) {
             err.printStackTrace();
         }
+    }
+
+    private static void getMenuInfo(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject json = new JSONObject();
+        String menuIdTemp = request.getParameter("id");
+
+        if(menuIdTemp == null || menuIdTemp.equals("")) {
+            json.put("error","Id empty");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        int menuId = -1;
+        try {
+            menuId = Integer.parseInt(menuIdTemp);
+        } catch (Exception err) {
+            err.printStackTrace();
+            json.put("error", "Id must be number");
+            jsonResponse(response, 400, json);
+        }
+
+        if(menuId == -1) return;
+
+        Menu menu = MenuDA.retrieveMenuById(menuId);
+
+        if(menu.getItemId() == -1) {
+            json.put("error", "No menu with id provided");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        JSONObject menuJson = new JSONObject();
+        menuJson.put("menuId", menu.getItemId());
+        menuJson.put("menuName", menu.getItemName());
+        menuJson.put("menuPrice", menu.getItemPrice());
+        menuJson.put("menuDescription", menu.getItemDescription());
+
+        json.put("content", menuJson);
+
+        jsonResponse(response, 200, json);
     }
 }
