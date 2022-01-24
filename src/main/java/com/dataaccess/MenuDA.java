@@ -56,8 +56,23 @@ public abstract class MenuDA {
         return menu;
     }
 
-    public static void updateMenu() {
+    public static boolean updateMenuInfo(int id, String name, double price, String description) {
         // update menu
+        boolean succeed = false;
+
+        try {
+            String sql = "UPDATE menu SET name=?, price=?, description=? WHERE id=?";
+
+            int affectedRow = QueryHelper.insertUpdateQuery(sql,new Object[] {
+                    name, price, description, id
+            });
+
+            if (affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
     }
 
     public static void deleteMenu() {
