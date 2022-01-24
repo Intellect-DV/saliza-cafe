@@ -21,7 +21,7 @@ public class MenuServlet extends HttpServlet {
 
         switch (action.toLowerCase()) {
             case "getmenu":
-                getMenu(request, response);
+                getMenus(request, response);
                 break;
             case "getmenuinfo":
                 getMenuInfo(request, response);
@@ -52,7 +52,7 @@ public class MenuServlet extends HttpServlet {
         }
     }
 
-    private static void getMenu(HttpServletRequest request, HttpServletResponse response) {
+    private static void getMenus(HttpServletRequest request, HttpServletResponse response) {
         String type = request.getParameter("type");
         JSONObject json = new JSONObject();
         if(type == null || type.equals("")) return;
