@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 const getFoodMenu = () => {
-    axios.get("/view/edit-menu__food.jsp")
+    axios.get("/menu?action=getmenu&type=food")
         .then(response => {
             menuDiv.innerHTML = response.data;
         })
@@ -37,7 +37,7 @@ const getFoodMenu = () => {
 }
 
 const getBeverageMenu = () => {
-    axios.get("/view/edit-menu__beverage.jsp")
+    axios.get("/menu?action=getmenu&type=beverage")
         .then(response => {
             menuDiv.innerHTML = response.data;
         })
@@ -47,7 +47,7 @@ const getBeverageMenu = () => {
 }
 
 const getDessertMenu = () => {
-    axios.get("/view/edit-menu__dessert.jsp")
+    axios.get("/menu?action=getmenu&type=dessert")
         .then(response => {
             menuDiv.innerHTML = response.data;
         })
