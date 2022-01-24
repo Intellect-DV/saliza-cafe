@@ -1,0 +1,84 @@
+.modal_confirm__backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.8);
+    top: 0;
+    visibility: visible;
+}
+.modal_confirm__backdrop.hide {
+    visibility: hidden;
+}
+
+.modal_confirm__box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    transform: translate(-50%, -50%);
+
+    transition: all ease-in-out 200ms;
+}
+.modal_confirm__backdrop > .modal_confirm__box{
+    visibility: visible;
+    opacity: 100%;
+}
+.modal_confirm__backdrop.hide > .modal_confirm__box{
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-50%, -90%);
+}
+.modal_confirm__box > .title {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: 600;
+}
+.modal_confirm__box > .title.error {
+    color: var(--color-red);
+}
+.modal_confirm__box > .title.success {
+    color: var(--color-green);
+}
+.modal_confirm__box > .content {
+    display: block;
+    height: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.modal_confirm__box > .action {
+    display: block;
+}
+.modal_confirm__box > .action > .btn {
+    all: unset;
+    cursor: pointer;
+    padding: 5px 30px;
+    border-radius: 25px;
+    color: white;
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    margin: 0 5px;
+    transition: all ease-in-out 200ms;
+}
+.modal_confirm__box > .action > .btn.error{
+    background: var(--color-btn-error);
+}
+.modal_confirm__box > .action > .btn.error:hover, .modal_confirm__box > .action > .btn.error:active, .modal_confirm__box> .action > .btn.error:focus  {
+    background: var(--color-btn-error-hover);
+}
+.modal_confirm__box > .action > .btn.success {
+    background: var(--color-btn-success);
+}
+.modal_confirm__box > .action > .btn.success:hover, .modal_confirm__box> .action > .btn.success:active, .modal_confirm__box > .action > .btn.success:focus {
+    background: var(--color-btn-success-hover);
+}
