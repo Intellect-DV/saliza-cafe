@@ -93,7 +93,22 @@ public abstract class MenuDA {
         return succeed;
     }
 
-    public static void deleteMenu() {
+    public static boolean deleteMenu(Integer id) {
         // delete menu
+        boolean succeed = false;
+
+        try {
+            String sql = "DELETE FROM menu WHERE id=?";
+
+            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Integer[]{
+                    id
+            });
+
+            if(affectedRow == 1) succeed = true;
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+        return succeed;
     }
 }
