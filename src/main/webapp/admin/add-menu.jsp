@@ -21,6 +21,7 @@
     <%-- Custom style --%>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/add-menu.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <%-- AXIOS - make  http request --%>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/add-menu.js" defer></script>
@@ -41,5 +42,21 @@
 
         <button type="submit">Add</button>
     </form>
+
+    <div class="modal__backdrop hide">
+        <div class="modalbox">
+            <div class="modalbox__title">
+
+            </div>
+            <div class="modalbox__content">
+
+            </div>
+            <div class="modalbox__action">
+                <button type="button" class="btn" tabindex="0">
+                    Okay
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
