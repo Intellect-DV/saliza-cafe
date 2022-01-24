@@ -11,6 +11,7 @@ public class Menu {
     private String itemType; // menu type (food, beverage, dessert)
 
     public Menu() {
+        this.itemId = -1;
         this.itemName = null;
         this.itemDescription = null;
         this.itemPicUrl = null;
