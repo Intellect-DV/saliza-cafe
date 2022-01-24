@@ -85,7 +85,7 @@
     border: 2px solid white;
     color: white;
 }
-.menu__item > .menu__action > button:hover, .menu__item > .menu__action > button:focus {
+.menu__item > .menu__action > button:hover {
     background: var(--color-orange);
     border-color: var(--color-orange);
 }
