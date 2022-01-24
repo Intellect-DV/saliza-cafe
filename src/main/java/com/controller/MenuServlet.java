@@ -47,6 +47,9 @@ public class MenuServlet extends HttpServlet {
                 String applicationPath = getServletContext().getRealPath("");
                 createMenu(request, response, applicationPath);
                 break;
+            case "deletemenu":
+                deleteMenu(request, response);
+                break;
         }
     }
 
@@ -215,6 +218,7 @@ public class MenuServlet extends HttpServlet {
 
         if(worker.getManagerId() != -1) {
             json.put("error", "Authorization failed! Only manager can update menu.");
+            jsonResponse(response, 401, json);
             return;
         }
 
@@ -254,5 +258,56 @@ public class MenuServlet extends HttpServlet {
         }
 
         jsonResponse(response, succeed ? 200 : 400, json);
+    }
+
+    private static void deleteMenu(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject json = new JSONObject();
+        HttpSession session = request.getSession(false);
+
+        if(session == null || session.getAttribute("workerObj") == null) {
+            json.put("error", "Authorization failed! Please login first.");
+            jsonResponse(response, 401, json);
+            return;
+        }
+
+        Worker worker = (Worker) session.getAttribute("workerObj");
+
+        if(worker.getManagerId() != -1) {
+            json.put("error", "Authorization failed! Only manager can delete menu.");
+            jsonResponse(response, 401, json);
+            return;
+        }
+
+        String idTemp = request.getParameter("id");
+
+        if(idTemp == null || idTemp.equals("")) {
+            json.put("error", "Input empty");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        int id = -1;
+
+        try {
+            id = Integer.parseInt(idTemp);
+        } catch (Exception err) {
+            err.printStackTrace();
+            json.put("error", "Id must be number and not null");
+            jsonResponse(response, 400, json);
+            return;
+        }
+
+        if(id == -1) return;
+
+        boolean succeed = MenuDA.deleteMenu(id);
+
+        if(succeed) {
+            json.put("message", "The menu has been successfully deleted!");
+            jsonResponse(response, 200, json);
+            return;
+        }
+
+        json.put("error", "Cannot delete menu!");
+        jsonResponse(response, 400, json);
     }
 }
