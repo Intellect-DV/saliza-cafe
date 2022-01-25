@@ -55,6 +55,7 @@
         </nav>
     </header>
     <div class="container">
+    <!-- 
         <div class="cardbox">
             <div class="card">
                 card
@@ -66,6 +67,7 @@
                 card
             </div>
         </div>
+    -->
     </div>
 </body>
 </html>
