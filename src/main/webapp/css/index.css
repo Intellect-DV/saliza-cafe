@@ -23,13 +23,14 @@ body::after {
 .container {
     padding: 0 15vw;
     color: white;
+    position: relative;
+    top: 35vh;
 }
 .title {
     font-family: 'Montserrat', sans-serif;
     color: #bf722d;
     text-align: center;
     font-size: 135px;
-    margin-top: 300px;
     margin-bottom: -25px;
 }
 .title__full {
