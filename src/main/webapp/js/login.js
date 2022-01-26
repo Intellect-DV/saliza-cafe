@@ -30,12 +30,10 @@ window.addEventListener('DOMContentLoaded', function(event){
 
         axios.post(url,params)
             .then(response => {
-                // const message = response.data.message;
                 const {message} = response.data;
-                console.log(response);
-                console.log("Response: " + message)
-
-                // todo -- redirect
+                if(message === "Login success!"){
+                    window.location.replace("/customer");
+                }
             })
             .catch(err => {
                 const {error} = err.response.data;
@@ -62,8 +60,9 @@ window.addEventListener('DOMContentLoaded', function(event){
             .then(response => {
                 // const message = response.data.message;
                 const {message} = response.data;
+                const {url} = response.data;
                 if(message === "Login success!") {
-                    window.location.replace("/admin");
+                    window.location.replace(url);
                 }
             })
             .catch(err => {
