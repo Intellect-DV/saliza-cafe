@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', function(event){
             .then(response => {
                 const {message} = response.data;
                 if(message === "Login success!"){
-                    window.location.replace("/customer");
+                    window.location.replace("/customer/");
                 }
             })
             .catch(err => {
