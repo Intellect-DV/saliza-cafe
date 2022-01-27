@@ -1,5 +1,6 @@
 package com.dataaccess;
 
+import com.connection.Database;
 import com.helper.QueryHelper;
 import com.model.Menu;
 
@@ -13,7 +14,7 @@ public abstract class MenuDA {
         try {
             String sql = "INSERT INTO menu(name, price, description, pic_path, type) VALUES (?,?,?,?,?)";
 
-            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Object[] {
+            int affectedRow = QueryHelper.insertUpdateDeleteQuery(sql, new Object[] {
                     menu.getItemName(),
                     menu.getItemPrice(),
                     menu.getItemDescription(),
@@ -48,6 +49,8 @@ public abstract class MenuDA {
             }
         } catch (Exception err) {
             err.printStackTrace();
+        } finally {
+            Database.closeConnection();
         }
 
         return menus;
@@ -70,6 +73,8 @@ public abstract class MenuDA {
             }
         } catch (Exception err) {
             err.printStackTrace();
+        } finally {
+            Database.closeConnection();
         }
 
         return menu;
@@ -82,7 +87,7 @@ public abstract class MenuDA {
         try {
             String sql = "UPDATE menu SET name=?, price=?, description=? WHERE id=?";
 
-            int affectedRow = QueryHelper.insertUpdateQuery(sql,new Object[] {
+            int affectedRow = QueryHelper.insertUpdateDeleteQuery(sql,new Object[] {
                     name, price, description, id
             });
 
@@ -101,7 +106,7 @@ public abstract class MenuDA {
         try {
             String sql = "DELETE FROM menu WHERE id=?";
 
-            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Integer[]{
+            int affectedRow = QueryHelper.insertUpdateDeleteQuery(sql, new Integer[]{
                     id
             });
 

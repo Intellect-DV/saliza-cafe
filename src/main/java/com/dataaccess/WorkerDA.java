@@ -1,5 +1,6 @@
 package com.dataaccess;
 
+import com.connection.Database;
 import com.helper.QueryHelper;
 import com.model.Worker;
 import java.sql.ResultSet;
@@ -19,6 +20,8 @@ public abstract class WorkerDA {
             worker.setValid(rs.next()); rs.close();
         } catch (SQLException err) {
             err.printStackTrace();
+        } finally {
+            Database.closeConnection();
         }
 
         return worker;
@@ -38,7 +41,7 @@ public abstract class WorkerDA {
                 managerId
             };
 
-            int rowAffected = QueryHelper.insertUpdateQuery(sql,obj) ;
+            int rowAffected = QueryHelper.insertUpdateDeleteQuery(sql,obj) ;
             if(rowAffected == 1) succeed = true;
         } catch (Exception err) {
             err.printStackTrace();
@@ -53,6 +56,10 @@ public abstract class WorkerDA {
         try {
             // COALESCE = NVL in oracle
             String sql = "SELECT workerid, workername, workeremail, COALESCE(managerid,-1) AS managerid FROM worker WHERE username=? AND password=?";
+
+            if(Database.getType().equals("oracle")) {
+                sql = "SELECT workerid, workername, workeremail, NVL(to_char(managerid),-1) AS managerid FROM worker WHERE username=? AND password=?";
+            }
 
             ResultSet rs = QueryHelper.getResultSet(sql, new String[] {username, password});
 
@@ -71,6 +78,8 @@ public abstract class WorkerDA {
             rs.close();
         } catch (SQLException err) {
             err.printStackTrace();
+        } finally {
+            Database.closeConnection();
         }
 
         return worker;
@@ -99,6 +108,8 @@ public abstract class WorkerDA {
             }
         } catch (Exception err) {
             err.printStackTrace();
+        } finally {
+            Database.closeConnection();
         }
 
         return workers;
@@ -109,7 +120,7 @@ public abstract class WorkerDA {
         try {
             String sql = "UPDATE worker set username=?, workername=?, workeremail=? WHERE workerid=?";
 
-            int affectedRow  = QueryHelper.insertUpdateQuery(sql,new Object[]{
+            int affectedRow  = QueryHelper.insertUpdateDeleteQuery(sql,new Object[]{
                     updateWorker.getWorkerUsername(),
                     updateWorker.getWorkerName(),
                     updateWorker.getWorkerEmail(),
@@ -129,7 +140,7 @@ public abstract class WorkerDA {
         try{
             String sql = "UPDATE worker set password=? WHERE workerid=?";
 
-            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Object[]{
+            int affectedRow = QueryHelper.insertUpdateDeleteQuery(sql, new Object[]{
                 newPassword,
                 id
             });
@@ -147,7 +158,7 @@ public abstract class WorkerDA {
         try{
             String sql = "DELETE FROM worker WHERE workerid=?";
 
-            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Integer[] {
+            int affectedRow = QueryHelper.insertUpdateDeleteQuery(sql, new Integer[] {
                     id
             });
 
