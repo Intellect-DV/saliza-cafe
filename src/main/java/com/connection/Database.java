@@ -8,8 +8,9 @@ import java.sql.SQLException;
 public abstract class Database {
     // add static variable
     private static Connection conn = null;
+    private static String type = "postgres";
 
-    private static void init() {
+    private static void initPostgres() {
         // initialize conn
         try {
             Class.forName("org.postgresql.Driver"); // use postgres driver
@@ -32,12 +33,33 @@ public abstract class Database {
         }
     }
 
+    private static void initOracle() {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            String username, password, dbURL;
+
+            dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
+            username = "SALIZACAFE";
+            password = "system";
+
+            conn = DriverManager.getConnection(dbURL,username,password);
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
+    public static String getType() {
+        return type;
+    }
+
     // return connection
     public static Connection getConnection() {
         // check if conn is null
         try {
             if(conn == null || conn.isClosed()) {
-                init(); // initialize the database
+                if(type.equals("postgres")) initPostgres(); // initialize the database
+                else if(type.equals("oracle")) initOracle();
             }
         } catch (SQLException err) {
             err.printStackTrace();
