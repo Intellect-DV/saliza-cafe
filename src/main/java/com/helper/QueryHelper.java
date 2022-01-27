@@ -1,6 +1,6 @@
 package com.helper;
 
-import com.connection.Postgres;
+import com.connection.Database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,13 +20,13 @@ public abstract class QueryHelper {
         Statement stmt;
 
         try {
-            stmt = Postgres.getConnection().createStatement();
+            stmt = Database.getConnection().createStatement();
             rs = stmt.executeQuery(sql);
 
         } catch(SQLException err) {
             err.printStackTrace();
         } finally {
-            Postgres.closeConnection();
+            Database.closeConnection();
         }
         return rs;
     }
@@ -45,7 +45,7 @@ public abstract class QueryHelper {
         } catch (SQLException err) {
             err.printStackTrace();
         } finally {
-            Postgres.closeConnection(); // close connection
+            Database.closeConnection(); // close connection
         }
 
         return rs;
@@ -69,7 +69,7 @@ public abstract class QueryHelper {
         } catch (SQLException err) {
             err.printStackTrace();
         } finally {
-            Postgres.closeConnection();
+            Database.closeConnection();
         }
 
         return updatedRow;
@@ -88,7 +88,7 @@ public abstract class QueryHelper {
         PreparedStatement prepStmt = null;
 
         try {
-            prepStmt = Postgres.getConnection().prepareStatement(sql);
+            prepStmt = Database.getConnection().prepareStatement(sql);
 
             final int SIZE = data.length;
             for(int i = 0; i < SIZE; i++) {

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class Postgres {
+public abstract class Database {
     // add static variable
     private static Connection conn = null;
 
