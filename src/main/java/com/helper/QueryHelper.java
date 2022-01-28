@@ -25,6 +25,8 @@ public abstract class QueryHelper {
 
         } catch(SQLException err) {
             err.printStackTrace();
+        } finally {
+            Database.closeConnection();
         }
         return rs;
     }
@@ -42,6 +44,8 @@ public abstract class QueryHelper {
             rs = getPrepStmt(sql, data).executeQuery();
         } catch (SQLException err) {
             err.printStackTrace();
+        } finally {
+            Database.closeConnection(); // close connection
         }
 
         return rs;
@@ -54,7 +58,7 @@ public abstract class QueryHelper {
      * @return Either -1 for failed, 0 for not updating, > 0 updating 1 or more rows in table
      */
     // INSERT OR UPDATE STATEMENT - return row updated (-1 for failed) (0 for not updating row)
-    public static int insertUpdateDeleteQuery(String sql, Object [] data) {
+    public static int insertUpdateQuery(String sql, Object [] data) {
         PreparedStatement prepStmt = null;
         int updatedRow = -1;
 

@@ -1,8 +1,6 @@
 package com.dataaccess;
 
 import java.sql.*;
-
-import com.connection.Database;
 import com.helper.QueryHelper;
 import com.model.Customer;
 
@@ -19,8 +17,6 @@ public abstract class CustomerDA {
             cust.setValid(rs.next()); rs.close();
         } catch (SQLException err) {
             err.printStackTrace();
-        } finally {
-            Database.closeConnection();
         }
 
         return cust;
@@ -39,7 +35,7 @@ public abstract class CustomerDA {
               cust.getCustomerEmail()
             };
 
-            int rowAffected = QueryHelper.insertUpdateDeleteQuery(sql,obj);
+            int rowAffected = QueryHelper.insertUpdateQuery(sql,obj) ;
             if(rowAffected == 1) succeed = true;
         } catch (Exception err) {
             err.printStackTrace();
@@ -70,8 +66,6 @@ public abstract class CustomerDA {
             rs.close();
         } catch (SQLException err) {
             err.printStackTrace();
-        } finally {
-            Database.closeConnection();
         }
 
         return cust;
@@ -83,7 +77,7 @@ public abstract class CustomerDA {
         try {
             String sql = "UPDATE customer set username=?, custname=?, custemail=? WHERE custid=?";
 
-            int affectedRow  = QueryHelper.insertUpdateDeleteQuery(sql,new Object[]{
+            int affectedRow  = QueryHelper.insertUpdateQuery(sql,new Object[]{
                     updateCust.getCustomerUsername(),
                     updateCust.getCustomerName(),
                     updateCust.getCustomerEmail(),
