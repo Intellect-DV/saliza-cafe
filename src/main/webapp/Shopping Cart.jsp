@@ -10,6 +10,6 @@
 </head>
 <body>
 <%@include file="navigation-bar.html"%>
-    <div class="w3 container"
+    <div class="w3 container"></div>
 </body>
 </html>
