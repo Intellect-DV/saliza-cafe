@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="Cart.css">
+    <title>Shopping Cart</title>
+<body>
+
+<button class="fa fa-chevron-up icon" onclick="topFunction()" id="myBtn" title="Go to top"></button>
+
+<div class="stage w3-center" style="height: 170px">
+    <button class="btn fa fa-shopping-cart icon" onclick="shopping('cart')"></button>
+    <button class="btn fa fa-credit-card icon" onclick="shopping('checkout')"></button>
+</div>
+
+<div id="cart" class="w3-container shop">
+    <table class="center">
+        <thead>
+        <tr>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>TOTAL</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="w3-bar">
+                <form action="" method="post" class="">
+                    <img src="LaksaPineng.png" class="w3-bar-item w3-hide-small" style="width:170px; length:110px">
+                    <div class="w3-bar-item">
+                        <h4>Laksa Pinang</h4>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <h4>RM100</h4>
+            </td>
+            <td>
+                <div class="wrapper">
+                    <span class="minus">-</span>
+                    <span class="num">01</span>
+                    <span class="plus">+</span>
+                </div>
+            </td>
+            <td>
+                <h4>RM100</h4>
+            </td>
+            <td>
+                <button class="w3-button w3-large w3-red">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="w3-bar">
+                <form action="" method="post" class="">
+                    <img src="LaksaPineng.png" class="w3-bar-item w3-hide-small" style="width:170px; length:110px">
+                    <div class="w3-bar-item">
+                        <h4>Laksa Pinang</h4>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <h4>RM100</h4>
+            </td>
+            <td>
+                <div class="wrapper">
+                    <span class="minus">-</span>
+                    <span class="num">01</span>
+                    <span class="plus">+</span>
+                </div>
+            </td>
+            <td>
+                <h4>RM100</h4>
+            </td>
+            <td>
+                <button class="w3-button w3-large w3-red">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+        <tr>
+            <td><h2 style="text-align: left">SUBTOTAL - RM100</h2></td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td><button class="button" onclick="shopping('checkout')" style="vertical-align:middle"><span>Checkout </span></button></td>
+        </tr>
+    </table>
+</div>
+
+<div id="checkout" class="w3-container shop" style="display:none">
+    <table class="center">
+        <tr>
+            <td>
+                <div class="w3-center">
+                    <button class="button-55" role="button" onclick="payment('credit')"><img style="height:29px; width:32px" src="visa.png"></button>
+                    <button class="button-55" role="button" onclick="payment('online')"><img style="height:30px; width:30px" src="FPX.png"></button>
+                    <button class="button-55" role="button" onclick="payment('wallet')"><img style="height:30px; width:30px" src="wallet.png"></button>
+                </div>
+                <div id="credit" class="form-inline w3-container pay">
+                    <form style="display:inline-list-item">
+                        <label for="Cname"></label>
+                        <input type="text" id="Cname" name="Cname" placeholder="CARD HOLDER NAME">
+                        <label for="Cnum"></label>
+                        <input type="text" id="Cnum" name="Cnum" placeholder="CARD NUMBER">
+                    </form>
+                    </br>
+                    </br>
+                    <h5 style="text-align: left">END DATE</h5>
+                    <div class="select-dropdown" style="width: 150px">
+                        <select>
+                            <option value="Option 1">MONTH</option>
+                            <option value="Option 2">JANUARY</option>
+                            <option value="Option 3">FEBRUARY</option>
+                            <option value="Option 3">MARCH</option>
+                            <option value="Option 3">APRIL</option>
+                            <option value="Option 3">MAY</option>
+                            <option value="Option 3">JUNE</option>
+                            <option value="Option 3">JULY</option>
+                            <option value="Option 3">AUGUST</option>
+                            <option value="Option 3">SEPTEMBER</option>
+                            <option value="Option 3">OCTOBER</option>
+                            <option value="Option 3">NOVEMBER</option>
+                            <option value="Option 3">DECEMBER</option>
+                        </select>
+                    </div>
+                    </br>
+                    <div class="select-dropdown" style="width: 150px">
+                        <select>
+                            <option value="Option 1">YEAR</option>
+                            <option value="Option 2">2023</option>
+                            <option value="Option 2">2024</option>
+                            <option value="Option 2">2025</option>
+                            <option value="Option 2">2026</option>
+                            <option value="Option 2">2027</option>
+                            <option value="Option 2">2028</option>
+                            <option value="Option 2">2029</option>
+                            <option value="Option 2">2030</option>
+                        </select>
+                    </div>
+                    <input type="text" id="Cvv" name="Cvv" placeholder="CVV">
+                    </br>
+                    </br>
+                    </br>
+                    <button class="button w3-right" style="vertical-align: initial"><span>PLACE ORDER </span></button>
+                </div>
+
+                <div id="online" class="w3-container pay" style="display:none">
+                    <label class="container"><img class="image"  src="maybank.jpg">
+                        <input type="radio" checked="checked" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"><img class="image" src="BankIslam.png">
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"><img class="image" src="BSN.png">
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"><img class="image" src="affinbank.png">
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"><img class="image" src="RHB.png">
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"><img class="image" src="cimb.png">
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <button class="button w3-right" style="vertical-align: initial"><span>PLACE ORDER </span></button>
+                </div>
+
+                <div id="wallet" class="w3-container pay" style="display:none">
+                    <label class="container"><img class="image1" src="grab.png">
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container"><img class="image1" src="TNG.png">
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <button class="button w3-right" style="vertical-align: initial"><span>PLACE ORDER </span></button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    $('.dropdown').click(function () {
+        $(this).attr('tabindex', 1).focus();
+        $(this).toggleClass('active');
+        $(this).find('.dropdown-menu').slideToggle(300);
+    });
+    $('.dropdown').focusout(function () {
+        $(this).removeClass('active');
+        $(this).find('.dropdown-menu').slideUp(300);
+    });
+    $('.dropdown .dropdown-menu li').click(function () {
+        $(this).parents('.dropdown').find('span').text($(this).text());
+        $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+    });
+    /*End Dropdown Menu*/
+
+    $('.dropdown-menu li').click(function () {
+        var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
+            msg = '<span class="msg">Hidden input value: ';
+        $('.msg').html(msg + input + '</span>');
+    });
+</script>
+<script>
+    var mybutton = document.getElementById("myBtn");
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<script>
+    function payment(method) {
+        var i;
+        var x = document.getElementsByClassName("pay");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById(method).style.display = "block";
+    }
+</script>
+<script>
+    const plus = document.querySelector(".plus"),
+        minus = document.querySelector(".minus"),
+        num= document.querySelector(".num");
+
+    let a = 1;
+
+    plus.addEventListener("click",()=>{
+        a++;
+        a=(a<10) ? "0" + a : a;
+        num.innerText = a;
+        console.log(a)
+    });
+
+    minus.addEventListener("click",()=>{
+        if(a>1){
+            a--;
+            a=(a<10) ? "0" + a : a;
+            num.innerText = a;
+        }
+    });
+</script>
+<script>
+    function shopping(iconName) {
+        var i;
+        var x = document.getElementsByClassName("shop");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById(iconName).style.display = "block";
+    }
+</script>
+</body>
+</html>
