@@ -38,7 +38,7 @@ public abstract class WorkerDA {
                 managerId
             };
 
-            int rowAffected = QueryHelper.insertUpdateQuery(sql,obj) ;
+            int rowAffected = QueryHelper.insertUpdateDeleteQuery(sql,obj) ;
             if(rowAffected == 1) succeed = true;
         } catch (Exception err) {
             err.printStackTrace();
@@ -109,7 +109,7 @@ public abstract class WorkerDA {
         try {
             String sql = "UPDATE worker set username=?, name=?, email=? WHERE id=?";
 
-            int affectedRow  = QueryHelper.insertUpdateQuery(sql,new Object[]{
+            int affectedRow  = QueryHelper.insertUpdateDeleteQuery(sql,new Object[]{
                     updateWorker.getWorkerUsername(),
                     updateWorker.getWorkerName(),
                     updateWorker.getWorkerEmail(),
@@ -129,7 +129,7 @@ public abstract class WorkerDA {
         try{
             String sql = "UPDATE worker set password=? WHERE id=?";
 
-            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Object[]{
+            int affectedRow = QueryHelper.insertUpdateDeleteQuery(sql, new Object[]{
                 newPassword,
                 id
             });
@@ -147,7 +147,7 @@ public abstract class WorkerDA {
         try{
             String sql = "DELETE FROM worker WHERE id=?";
 
-            int affectedRow = QueryHelper.insertUpdateQuery(sql, new Integer[] {
+            int affectedRow = QueryHelper.insertUpdateDeleteQuery(sql, new Integer[] {
                     id
             });
 
