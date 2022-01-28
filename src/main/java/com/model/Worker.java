@@ -5,19 +5,23 @@ public class Worker {
     private String workerUsername;
     private String workerPassword;
     private String workerName;
-    private String managerId;
+    private String workerEmail;
+    private int managerId; // -2 for null, -1 for manager
+    private boolean valid;
 
     public Worker() {
         this.workerUsername = null;
         this.workerPassword = null;
         this.workerName = null;
-        this.managerId = null;
+        this.workerEmail = null;
+        this.managerId = -2;
     }
 
-    public Worker(String workerUsername, String workerPassword, String workerName, String managerId) {
+    public Worker(String workerUsername, String workerPassword, String workerName, String workerEmail, int managerId) {
         this.workerUsername = workerUsername;
         this.workerPassword = workerPassword;
         this.workerName = workerName;
+        this.workerEmail = workerEmail;
         this.managerId = managerId;
     }
 
@@ -26,7 +30,30 @@ public class Worker {
         this.workerUsername = worker.workerUsername;
         this.workerPassword = worker.workerPassword;
         this.workerName = worker.workerName;
+        this.workerEmail = worker.workerEmail;
         this.managerId = worker.managerId;
+    }
+
+    public void setWorker(int workerId, String workerUsername, String workerName, String workerEmail) {
+        this.workerId = workerId;
+        this.workerUsername = workerUsername;
+        this.workerName = workerName;
+        this.workerEmail = workerEmail;
+    }
+
+    public void setWorker(int workerId, String workerUsername, String workerName, String workerEmail, int managerId) {
+        this.workerId = workerId;
+        this.workerUsername = workerUsername;
+        this.workerName = workerName;
+        this.workerEmail = workerEmail;
+        this.managerId = managerId;
+    }
+
+    public void setWorker(String workerUsername, String workerPassword, String workerName,  String workerEmail) {
+        this.workerUsername = workerUsername;
+        this.workerPassword = workerPassword;
+        this.workerName = workerName;
+        this.workerEmail = workerEmail;
     }
 
     public int getWorkerId() {
@@ -61,11 +88,17 @@ public class Worker {
         this.workerName = workerName;
     }
 
-    public String getManagerId() {
-        return managerId;
-    }
+    public String getWorkerEmail() { return workerEmail; }
 
-    public void setManagerId(String managerId) {
+    public void setWorkerEmail(String workerEmail) { this.workerEmail = workerEmail; }
+
+    public int getManagerId() { return managerId; }
+
+    public void setManagerId(int managerId) {
         this.managerId = managerId;
     }
+
+    public boolean isValid() { return valid; }
+
+    public void setValid(boolean valid) { this.valid = valid; }
 }

@@ -57,8 +57,8 @@ public abstract class QueryHelper {
      * @param data Array of Object; Example: new Object[]{"string",234}
      * @return Either -1 for failed, 0 for not updating, > 0 updating 1 or more rows in table
      */
-    // INSERT STATEMENT - return row updated (-1 for failed) (0 for not updating row)
-    public static int insertQuery(String sql, Object [] data) {
+    // INSERT OR UPDATE STATEMENT - return row updated (-1 for failed) (0 for not updating row)
+    public static int insertUpdateQuery(String sql, Object [] data) {
         PreparedStatement prepStmt = null;
         int updatedRow = -1;
 

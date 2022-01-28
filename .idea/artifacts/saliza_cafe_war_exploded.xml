@@ -16,8 +16,10 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: javax.mvc:javax.mvc-api:1.0.0" />
+          <element id="library" level="project" name="Maven: org.json:json:20211205" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.3.1" />
           <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

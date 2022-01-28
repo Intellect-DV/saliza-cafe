@@ -1,0 +1,65 @@
+body:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/background-home.jpg") no-repeat center;
+    background-size: cover;
+    z-index: -1;
+    filter: blur(2px);
+}
+body::after {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    content: '';
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.container {
+    padding: 0 15vw;
+    color: white;
+    position: relative;
+    top: 35vh;
+}
+.title {
+    font-family: 'Montserrat', sans-serif;
+    color: #bf722d;
+    text-align: center;
+    font-size: 135px;
+    margin-bottom: -25px;
+}
+.title__full {
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+}
+.action {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+.btn {
+    all: unset;
+    text-decoration: none;
+    border: 2px solid white;
+    padding: 10px 30px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all ease-in-out 200ms;
+}
+.btn:hover {
+    color: #bf722d;
+    border-color: #bf722d;
+    transform: translateY(10px);
+}

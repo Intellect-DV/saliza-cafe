@@ -1,0 +1,58 @@
+.form_profile {
+    position: absolute;
+    width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 40px;
+    background: var(--color-black-trans);
+    right: 50%;
+    transform: translateX(50%);
+    margin-top: 130px;
+
+}
+.form_profile__title {
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+.form_profile > .form_profile__item {
+    display: flex;
+    justify-content: space-between;
+}
+.form_profile > .form_profile__item > label {
+    color: white;
+}
+.form_profile > .form_profile__item > input {
+    display: block;
+    font-size: 1rem;
+    width: 75%;
+    border: none;
+}
+.form_profile > .form_profile__item > input:focus, .form_profile > .form_profile__item > input:active {
+    outline: 2px solid var(--color-orange);
+}
+.form_profile > button[type="submit"] {
+    all: unset;
+    cursor: pointer;
+    width: 40%;
+    margin: 0 auto;
+    font-size: inherit;
+    text-align: center;
+    background: var(--color-orange);
+    color: white;
+    font-weight: 600;
+    padding: 5px 10px;
+}
+.form_profile > button[type="submit"]:hover, .form_profile > button[type="submit"]:focus {
+    background: var(--color-orange-dark);
+}
+.form_profile > .form_profile__link {
+    color: white;
+    text-align: center;
+}
+.form_profile > .form_profile__link > a {
+    color: rgb(25, 140, 255);
+    font-weight: 700;
+}
