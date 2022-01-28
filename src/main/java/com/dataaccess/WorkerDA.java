@@ -13,7 +13,7 @@ public abstract class WorkerDA {
         Worker worker = new Worker();
 
         try {
-            String sql = "SELECT workerid FROM worker WHERE username=?";
+            String sql = "SELECT id FROM worker WHERE username=?";
             ResultSet rs = QueryHelper.getResultSet(sql, new String[]{username});
 
             worker.setValid(rs.next()); rs.close();
@@ -28,7 +28,7 @@ public abstract class WorkerDA {
         boolean succeed = false;
 
         try {
-            String sql = "INSERT INTO worker (username, password, workername, workeremail, managerid) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO worker (username, password, name, email, manager_id) VALUES (?,?,?,?,?)";
 
             Object[] obj = new Object[] {
                 worker.getWorkerUsername(),
@@ -52,17 +52,17 @@ public abstract class WorkerDA {
 
         try {
             // COALESCE = NVL in oracle
-            String sql = "SELECT workerid, workername, workeremail, COALESCE(managerid,-1) AS managerid FROM worker WHERE username=? AND password=?";
+            String sql = "SELECT id, name, email, COALESCE(manager_id,-1) AS manager_id FROM worker WHERE username=? AND password=?";
 
             ResultSet rs = QueryHelper.getResultSet(sql, new String[] {username, password});
 
             if(rs.next()) {
                 String name, email;
                 int id, managerId;
-                id = rs.getInt("workerid");
-                name = rs.getString("workername");
-                email = rs.getString("workeremail");
-                managerId = rs.getInt("managerid");
+                id = rs.getInt("id");
+                name = rs.getString("name");
+                email = rs.getString("email");
+                managerId = rs.getInt("manager_id");
 
                 worker.setWorker(id,username,name,email,managerId); worker.setValid(true);
             } else {
@@ -80,7 +80,7 @@ public abstract class WorkerDA {
         ArrayList<Worker> workers = new ArrayList<>();
 
         try {
-            String sql = "SELECT workerid, username, workername, workeremail FROM worker WHERE managerid=? ORDER BY workerid ASC";
+            String sql = "SELECT id, username, name, email FROM worker WHERE manager_id=? ORDER BY id ASC";
 
             ResultSet rs = QueryHelper.getResultSet(sql,new Integer[]{
                     id
@@ -89,10 +89,10 @@ public abstract class WorkerDA {
             if(rs != null) {
                 while(rs.next()) {
                     Worker temp = new Worker();
-                    temp.setWorkerId(rs.getInt("workerid"));
+                    temp.setWorkerId(rs.getInt("id"));
                     temp.setWorkerUsername(rs.getString("username"));
-                    temp.setWorkerName(rs.getString("workername"));
-                    temp.setWorkerEmail(rs.getString("workeremail"));
+                    temp.setWorkerName(rs.getString("name"));
+                    temp.setWorkerEmail(rs.getString("email"));
 
                     workers.add(temp);
                 }
@@ -107,7 +107,7 @@ public abstract class WorkerDA {
     public static boolean updateWorkerProfile(Worker updateWorker, int id) {
         boolean succeed = false;
         try {
-            String sql = "UPDATE worker set username=?, workername=?, workeremail=? WHERE workerid=?";
+            String sql = "UPDATE worker set username=?, name=?, email=? WHERE id=?";
 
             int affectedRow  = QueryHelper.insertUpdateQuery(sql,new Object[]{
                     updateWorker.getWorkerUsername(),
@@ -127,7 +127,7 @@ public abstract class WorkerDA {
     public static boolean updateWorkerPassword(String newPassword, int id) {
         boolean succeed = false;
         try{
-            String sql = "UPDATE worker set password=? WHERE workerid=?";
+            String sql = "UPDATE worker set password=? WHERE id=?";
 
             int affectedRow = QueryHelper.insertUpdateQuery(sql, new Object[]{
                 newPassword,
@@ -145,7 +145,7 @@ public abstract class WorkerDA {
     public static boolean deleteWorker(int id) {
         boolean succeed = false;
         try{
-            String sql = "DELETE FROM worker WHERE workerid=?";
+            String sql = "DELETE FROM worker WHERE id=?";
 
             int affectedRow = QueryHelper.insertUpdateQuery(sql, new Integer[] {
                     id
