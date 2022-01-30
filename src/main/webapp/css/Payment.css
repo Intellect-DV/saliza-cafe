@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&  display-swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.container{
+    min-height: 100vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    padding-bottom: 60px;
+    padding-top: 80px;
+}
+.container form{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.1);
+    padding: 20px;
+    width: 600px;
+}
+.container form .inputBox{
+    margin-top: 20px;
+}
+.container form .inputBox span{
+    display: block;
+    color: #999;
+    padding-bottom: 5px;
+}
+.container form .inputBox input,
+.container form .inputBox input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.3);
+    color: #444;
+}
+.container form .flexbox{
+    display: flex;
+    gap: 15px;
+}
+.container form .flexbox .inputBox{
+    flex: 1 1 150px;
+}
+.container form .submit-btn{
+    width: 100%;
+    background: linear-gradient(45deg, orangered, orange);
+    margin-top: 20px ;
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    transition: .2s linear;
+}
+.container form .submit-btn:hover{
+    letter-spacing: 2px;
+    opacity:.8 ;
+}
+.container .card-container{
+    margin-bottom: -150px;
+    position: relative;
+}
+.btn {
+    background: radial-gradient(orange,darkorange,orangered);
+    border-radius: 50%;
+    border: none;
+    color: black;
+    padding: 18px 25px;
+    margin: 50px 30px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: lightsalmon;
+}
+
+.cont {
+    display: block;
+    position: relative;
+    padding-left: 100px;
+    margin-bottom: 25px;
+    margin-top: 15px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.cont input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+.cont:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+.cont input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.cont input:checked ~ .checkmark:after {
+    display: block;
+}
+.cont .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+.image{
+    height: 50px;
+    width: 140px;
+}
+.container .form-fpx{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.1);
+    padding: 15px 30px;
+    width: 600px;
+
+}
+body{
+    padding: 50px;
+}
+

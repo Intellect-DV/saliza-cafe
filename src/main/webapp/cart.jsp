@@ -1,178 +1,76 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: NADHIRAH
-  Date: 15/1/2022
-  Time: 3:21 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Cart | SalizaEja Cafe</title>
-
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
-<section class="container content-section">
-    <br><br>
 
-    <h2 class="section-header">PRODUCT</h2>
-    <div class="shop-items">
-        <div class="shop-item">
-            <span class="shop-item-title">Black Tumeric Coffee</span>
-            <img class="shop-item-image" src="image/BLACK TUMERIC COFFEE.jpg">
-            <div class="shop-item-details">
-                <span class="shop-item-price">RM 99.00</span>
-                <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
-            </div>
-        </div>
-        <div class="shop-item">
-            <span class="shop-item-title">Navela(50ml) </span>
-            <img class="shop-item-image" src="image/NAVELA.jpeg">
-            <div class="shop-item-details">
-                <span class="shop-item-price">RM 119.00</span>
-                <button class="btn btn-primary shop-item-button"type="button">ADD TO CART</button>
-            </div>
-        </div>
-        <div class="shop-item">
-            <span class="shop-item-title">Navela(10ml)</span>
-            <img class="shop-item-image" src="image/NAVELA OIL.jpeg">
-            <div class="shop-item-details">
-                <span class="shop-item-price">RM 45.00</span>
-                <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
-            </div>
-        </div>
-        <div class="shop-item">
-            <span class="shop-item-title">Geranium Neutrax</span>
-            <img class="shop-item-image" src="image/GERANIUM.jpeg">
-            <div class="shop-item-details">
-                <span class="shop-item-price">RM 109.00</span>
-                <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
-            </div>
-        </div>
-    </div>
-</section>
+<div id="cart" class="w3-container shop">
+    <h1 class="w3-center">CART</h1>
+    <table class="center">
+        <thead>
+        <tr>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <div class="wrapper">
+                    <span class="minus">-</span>
+                    <span class="num">01</span>
+                    <span class="plus">+</span>
+                </div>
+            </td>
+            <td>
+                <button class="w3-button w3-large w3-red">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+        <tr class="tr-line">
+            <td colspan="3"><h2 style="text-align: right">Total - RM100</h2></td>
+        </tr>
+        <tr class="tr-line">
+            <td><a href="display-menu.jsp" class="btn-shopping"><<< Continue Shopping</a></td>
+            <td colspan="3"><a href="Payment.jsp" class="btn-checkout">Checkout >>></a></td>
+        </tr>
+    </table>
+</div>
 
-<section class="container content-section">
-    <h2 class="section-header">CART</h2>
-    <div class="cart-row">
-        <span class="cart-item cart-header cart-column">ITEM</span>
-        <span class="cart-price cart-header cart-column">PRICE</span>
-        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-    </div>
-    <div class="cart-items">
-    </div>
-    <div class="cart-total">
-        <strong class="cart-total-title">Total</strong>
-        <span class="cart-total-price">RM0</span>
-    </div>
-    <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
-</section>
 
+<!-- Counter -->
 <script>
-    if (document.readyState == 'loading') {
-        document.addEventListener('DOMContentLoaded', ready)
-    } else {
-        ready()
-    }
+    const plus = document.querySelector(".plus"),
+        minus = document.querySelector(".minus"),
+        num= document.querySelector(".num");
 
-    function ready() {
-        var removeCartItemButtons = document.getElementsByClassName('btn-danger')
-        for (var i = 0; i < removeCartItemButtons.length; i++) {
-            var button = removeCartItemButtons[i]
-            button.addEventListener('click', removeCartItem)
+    let a = 1;
+
+    plus.addEventListener("click",()=>{
+        a++;
+        a=(a<10) ? "0" + a : a;
+        num.innerText = a;
+        console.log(a)
+    });
+
+    minus.addEventListener("click",()=>{
+        if(a>1){
+            a--;
+            a=(a<10) ? "0" + a : a;
+            num.innerText = a;
         }
-
-        var quantityInputs = document.getElementsByClassName('cart-quantity-input')
-        for (var i = 0; i < quantityInputs.length; i++) {
-            var input = quantityInputs[i]
-            input.addEventListener('change', quantityChanged)
-        }
-
-        var addToCartButtons = document.getElementsByClassName('shop-item-button')
-        for (var i = 0; i < addToCartButtons.length; i++) {
-            var button = addToCartButtons[i]
-            button.addEventListener('click', addToCartClicked)
-        }
-
-        document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
-    }
-
-    function purchaseClicked() {
-        alert('Thank you for your purchase')
-        var cartItems = document.getElementsByClassName('cart-items')[0]
-        while (cartItems.hasChildNodes()) {
-            cartItems.removeChild(cartItems.firstChild)
-        }
-        updateCartTotal()
-    }
-
-    function removeCartItem(event) {
-        var buttonClicked = event.target
-        buttonClicked.parentElement.parentElement.remove()
-        updateCartTotal()
-    }
-
-    function quantityChanged(event) {
-        var input = event.target
-        if (isNaN(input.value) || input.value <= 0) {
-            input.value = 1
-        }
-        updateCartTotal()
-    }
-
-    function addToCartClicked(event) {
-        var button = event.target
-        var shopItem = button.parentElement.parentElement
-        var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
-        var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText
-        var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src
-        addItemToCart(title, price, imageSrc)
-        updateCartTotal()
-    }
-
-    function addItemToCart(title, price, imageSrc) {
-        var cartRow = document.createElement('div')
-        cartRow.classList.add('cart-row')
-        var cartItems = document.getElementsByClassName('cart-items')[0]
-        var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
-        for (var i = 0; i < cartItemNames.length; i++) {
-            if (cartItemNames[i].innerText == title) {
-                alert('This item is already added to the cart')
-                return
-            }
-        }
-        var cartRowContents = `
-        <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imageSrc}" width="50" height="50">
-            <span class="cart-item-title">${title}</span>
-        </div>
-        <span class="cart-price cart-column">${price}</span>
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger" type="button">REMOVE</button>
-        </div>`
-        cartRow.innerHTML = cartRowContents
-        cartItems.append(cartRow)
-        cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem)
-        cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
-    }
-
-    function updateCartTotal() {
-        var cartItemContainer = document.getElementsByClassName('cart-items')[0]
-        var cartRows = cartItemContainer.getElementsByClassName('cart-row')
-        var total = 0
-        for (var i = 0; i < cartRows.length; i++) {
-            var cartRow = cartRows[i]
-            var priceElement = cartRow.getElementsByClassName('cart-price')[0]
-            var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
-            var price = parseFloat(priceElement.innerText.replace('RM', ''))
-            var quantity = quantityElement.value
-            total = total + (price * quantity)
-        }
-        total = Math.round(total * 100) / 100
-        document.getElementsByClassName('cart-total-price')[0].innerText = 'RM' + total
-    }
-
+    });
 </script>
+
 </body>
 </html>
